@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120">
+  <rect width="460" height="120" rx="16" ry="16" fill="#ffffff"/>
+  <g transform="translate(20,20)">
+    <rect x="0" y="0" width="80" height="80" rx="12" fill="#006b3f"/>
+    <rect x="52" y="0" width="28" height="80" fill="#c8102e"/>
+    <circle cx="40" cy="40" r="18" fill="#ffffff"/>
+    <circle cx="40" cy="40" r="10" fill="#006b3f"/>
+  </g>
+  <text x="120" y="48" font-family="Arial,'Noto Sans Arabic',sans-serif" font-size="28" fill="#102a43">قناة الهوية والمواطنة</text>
+  <text x="120" y="85" font-family="Arial,'Noto Sans Arabic',sans-serif" font-size="18" fill="#006b3f">اختبار الصف الثالث — كيف ينمو عقلي</text>
+</svg>

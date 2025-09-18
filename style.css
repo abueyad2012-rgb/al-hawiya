@@ -1,0 +1,42 @@
+:root{
+  --primary:#006b3f; /* أخضر */
+  --red:#c8102e;     /* أحمر */
+  --gray:#102a43;
+  --bg:#f7faf9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#222;
+  font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans Arabic', Arial, sans-serif;}
+.container{max-width:920px;margin:0 auto;padding:16px}
+.hero{display:flex;align-items:center;gap:14px}
+.logo{width:64px;height:64px}
+h1{margin:0;color:var(--primary)}
+.subtitle{margin:2px 0 0;color:var(--gray)}
+.controls{margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hint{color:#5b6b78;font-size:14px}
+.question{
+  background:#fff;border:1px solid #e6efea;border-radius:16px;margin:18px 0;padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.q-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.icon{width:52px;height:52px}
+h2{font-size:20px;margin:0;color:#0f3d2e}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.btn{
+  padding:12px 10px;border:none;border-radius:12px;cursor:pointer;font-size:18px;
+  transition:transform .05s ease, filter .2s ease;display:block;width:100%;
+}
+.small{font-size:14px;padding:8px 12px}
+.mute{background:#888;color:#fff}
+.btn:active{transform:scale(.98)}
+.correct{background:#16a34a;color:#fff}
+.wrong{background:#dc2626;color:#fff}
+.feedback{min-height:24px;margin-top:8px;color:var(--primary);font-weight:700}
+.action{background:var(--red);color:#fff}
+.result{text-align:center;margin:24px 0}
+#score-text{font-size:18px;color:#0a2a55;font-weight:700}
+.footer{border-top:1px dashed #d9e7df;margin-top:12px;color:#3b3b3b}
+@media (max-width:560px){
+  .options{grid-template-columns:1fr}
+  .icon{width:44px;height:44px}
+}

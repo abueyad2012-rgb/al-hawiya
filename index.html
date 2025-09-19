@@ -1,298 +1,182 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>اختبار: كيف ينمو عقلي — الصف الثالث | قناة الهوية والمواطنة</title>
-
-  <!-- خط بسيط وجهاز -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root{
-      --brand:#0ea5a3;        /* أخضر مزرق */
-      --brand-2:#96c93d;      /* أخضر فاتح */
-      --good:#28a745;
-      --bad:#dc3545;
-      --primary:#0b72ff;
-      --ink:#1f2937;
-      --muted:#6b7280;
-      --card:#ffffff;
-      --bg:#f3f6fa;
+    body {
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
+      margin: 0;
+      padding: 0;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:"Cairo", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
-      color:var(--ink);
-      background: var(--bg);
-      /* خلفية زخرفية رقيقة */
-      background-image:
-        radial-gradient(60px 60px at 10% -10%, rgba(14,165,163,.16), transparent 60%),
-        radial-gradient(80px 80px at 110% 10%, rgba(150,201,61,.18), transparent 60%),
-        radial-gradient(120px 120px at 50% 120%, rgba(14,165,163,.10), transparent 60%);
+    header.hero {
+      text-align: center;
+      padding: 20px;
+      background: #0077b6;
+      color: #fff;
+      border-radius: 0 0 20px 20px;
     }
-
-    .container{max-width:980px;margin-inline:auto;padding-inline:16px}
-
-    /* الهيدر */
-    header.hero{
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      color:#fff;
-      padding:28px 0 36px;
-      border-radius:0 0 28px 28px;
-      box-shadow: 0 12px 20px rgba(14,165,163,.18);
-      position:relative;
-      overflow:hidden;
+    header.hero h1 {
+      margin: 10px 0;
     }
-    header.hero::after{
-      /* موجة شفافة */
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(600px 220px at 20% 0%, rgba(255,255,255,.18), transparent 60%),
-                  radial-gradient(700px 260px at 120% 10%, rgba(255,255,255,.12), transparent 60%);
-      pointer-events:none;
+    .controls button {
+      margin: 5px;
+      padding: 6px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
     }
-    .hero-wrap{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
-    .logo{width:76px; height:auto; filter:drop-shadow(0 6px 12px rgba(0,0,0,.15))}
-    h1{margin:0;font-size:clamp(20px,4vw,32px)}
-    .subtitle{margin:6px 0 14px; color:#eefbf4; font-weight:600}
-    .controls{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .hint{opacity:.9; font-size:.92rem}
-
-    /* أزرار عامة */
-    .btn{
-      border:0; cursor:pointer; color:#fff;
-      padding:10px 14px; border-radius:10px; font-weight:700;
-      transition:transform .05s ease, filter .15s ease, opacity .2s ease;
-      user-select:none
+    .btn { cursor: pointer; font-size: 16px; padding: 10px 20px; border: none; border-radius: 8px; }
+    .btn.correct { background: #2e8b57; color: #fff; }
+    .btn.wrong { background: #c1121f; color: #fff; }
+    .btn.action { background: #c1121f; color: #fff; margin-top: 10px; }
+    .question {
+      background: #fff;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 12px;
+      max-width: 700px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .btn:active{transform:translateY(1px)}
-    .btn.play{background:#16a34a}
-    .btn.pause{background:#ef4444}
-    .btn.fs{background:#0b72ff}
-    .btn.action{background:#b91c1c}
-    .btn.good{background:var(--good)}
-    .btn.bad{background:var(--bad)}
-
-    /* الكروت/الأسئلة */
-    main{padding-block:28px}
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      padding:18px;
-      margin-bottom:18px;
-      box-shadow:0 6px 16px rgba(2,6,23,.06), inset 0 0 0 1px rgba(2,6,23,.04);
+    .q-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .q-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
-    .icon{width:40px; height:40px}
-    h2{margin:0; font-size:clamp(18px,3.6vw,22px)}
-    .options{display:flex; gap:10px; flex-wrap:wrap}
-    .options .btn{flex:1; min-width:220px}
-
-    .feedback{margin-top:8px; font-weight:700}
-    .feedback.ok{color:var(--good)} .feedback.no{color:var(--bad)}
-
-    .result{text-align:center; padding-top:6px}
-    #score-text{font-size:1.1rem; font-weight:700; margin-top:10px}
-
-    /* الفوتر + عداد */
-    footer.footer{
-      margin:32px 0 24px;
-      padding:20px 14px;
-      background:#fff;
-      border-radius:16px;
-      box-shadow:0 6px 16px rgba(2,6,23,.06), inset 0 0 0 1px rgba(2,6,23,.04);
-      text-align:center
+    .q-head img { width: 28px; }
+    footer.footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      background: #0077b6;
+      color: #fff;
+      border-radius: 20px 20px 0 0;
     }
-    footer small{display:block; margin-bottom:8px; color:var(--muted); font-weight:700}
-    .counter{display:inline-flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px; background:#f3f6fa}
-    .counter .badge{
-      display:inline-block; min-width:64px; padding:6px 10px; text-align:center; font-weight:700;
-      color:#fff; background:linear-gradient(135deg, var(--brand), var(--brand-2)); border-radius:8px;
-      box-shadow:0 4px 10px rgba(14,165,163,.25);
+    .visitor-box {
+      display: inline-flex;
+      align-items: center;
+      background: #fff;
+      color: #0077b6;
+      padding: 5px 15px;
+      margin-top: 8px;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .counter .label{font-weight:700; color:var(--ink)}
+    .visitor-box span { margin-right: 8px; }
   </style>
 </head>
-
 <body>
-  <!-- الأصوات (تأكد من وجود الملفات في الجذر) -->
-  <audio id="bg" src="bg_music.wav" preload="auto" loop></audio>
-  <audio id="s-start"   src="start_chime.wav"    preload="auto"></audio>
-  <audio id="s-good"    src="correct_ting.wav"   preload="auto"></audio>
-  <audio id="s-bad"     src="wrong_buzz.wav"     preload="auto"></audio>
-  <audio id="s-fanfare" src="result_fanfare.wav" preload="auto"></audio>
+  <!-- الأصوات -->
+  <audio id="sfx-start" src="start_chime.wav" preload="auto"></audio>
+  <audio id="sfx-correct" src="correct_ting.wav" preload="auto"></audio>
+  <audio id="sfx-wrong" src="wrong_buzz.wav" preload="auto"></audio>
+  <audio id="sfx-fanfare" src="result_fanfare.wav" preload="auto"></audio>
+  <audio id="bg-music" src="bg_music.wav" preload="auto" loop></audio>
 
   <!-- الهيدر -->
-  <header class="hero">
-    <div class="container hero-wrap">
-      <img src="logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
-      <div>
-        <h1>🧠 اختبار: كيف ينمو عقلي — الصَّفُّ الثَّالِثُ</h1>
-        <p class="subtitle">مادّة الهُوِيَّةِ وَالمُواطَنَةِ — قناة الهوية والمواطنة</p>
-        <div class="controls">
-          <button id="btnPlay" class="btn play">تشغيل الموسيقى</button>
-          <button id="btnPause" class="btn pause">إيقاف الموسيقى</button>
-          <button id="btnFs" class="btn fs">وضع ملء الشاشة</button>
-          <span class="hint">⬅️ ابدأ بنقرة لتفعيل الصوت في المتصفح</span>
-        </div>
-      </div>
+  <header class="hero container">
+    <h1>🧠 اختبار: كيف ينمو عقلي — الصَّفُّ الثَّالِثُ</h1>
+    <p class="subtitle">مادّة الهُوِيَّةِ وَالمُواطَنَةِ — قناة الهوية والمواطنة</p>
+    <div class="controls">
+      <button id="btn-play">تشغيل الموسيقى</button>
+      <button id="btn-pause">إيقاف الموسيقى</button>
+      <button id="btn-fs">وضع ملء الشاشة</button>
     </div>
+    <span class="hint">⟵ ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
   </header>
 
   <!-- الأسئلة -->
   <main class="container">
-
-    <section class="card" data-q="1">
+    <section class="question" data-q="1">
       <div class="q-head">
-        <img src="book.svg" alt="كتاب" class="icon">
+        <img src="book.svg" alt="كتاب">
         <h2>مَا الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟</h2>
       </div>
       <div class="options">
-        <button class="btn bad"  data-correct="0" data-feedback="❌ خَطَأ؛ اللعب ممتع ولكن لا يُغذّي العقل.">اللَّعِبُ مَعَ الأَصْدِقَاءِ</button>
-        <button class="btn good" data-correct="1" data-feedback="✅ صَحِيح؛ القراءة والتعلُّم غذاءُ العقل!">القِرَاءَةُ وَالتَّعَلُّمُ</button>
+        <button class="btn wrong" data-feedback="❌ خطأ، اللعب ممتع ولكن لا يغذي العقل.">اللعب مع الأصدقاء</button>
+        <button class="btn correct" data-feedback="✅ صحيح، القراءة والتعلم غذاء العقل!">القراءة والتعلم</button>
       </div>
-      <p class="feedback" aria-live="polite"></p>
+      <p class="feedback"></p>
     </section>
 
-    <section class="card" data-q="2">
+    <section class="question" data-q="2">
       <div class="q-head">
-        <img src="apple.svg" alt="تفاحة" class="icon">
+        <img src="apple.svg" alt="تفاحة">
         <h2>مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟</h2>
       </div>
       <div class="options">
-        <button class="btn good" data-correct="1" data-feedback="✅ صَحِيح؛ التَّغْذِيَةُ الصِّحِّيَّةُ تُعطينا الطاقة.">التَّغْذِيَةُ الصِّحِّيَّةُ</button>
-        <button class="btn bad"  data-correct="0" data-feedback="❌ خَطَأ؛ السهَرُ يُتعب العقل.">السَّهَرُ الطَّوِيلُ</button>
+        <button class="btn correct" data-feedback="✅ صحيح، التغذية الصحية تعطينا الطاقة.">التغذية الصحية</button>
+        <button class="btn wrong" data-feedback="❌ خطأ، السهر الطويل يتعب العقل.">السهر الطويل</button>
       </div>
-      <p class="feedback" aria-live="polite"></p>
+      <p class="feedback"></p>
     </section>
 
-    <section class="card" data-q="3">
+    <section class="question" data-q="3">
       <div class="q-head">
-        <img src="water.svg" alt="كأس ماء" class="icon">
+        <img src="water.svg" alt="ماء">
         <h2>كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</h2>
       </div>
       <div class="options">
-        <button class="btn good" data-correct="1" data-feedback="✅ صَحِيح؛ شُرب الماء يُنشّط الدماغ.">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
-        <button class="btn bad"  data-correct="0" data-feedback="❌ خَطَأ؛ الإفراط في المشروبات الغازية مُضرّ.">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
+        <button class="btn correct" data-feedback="✅ صحيح، شرب الماء بانتظام ينشط الدماغ والجسم.">شرب الماء بانتظام</button>
+        <button class="btn wrong" data-feedback="❌ خطأ، الإفراط في المشروبات الغازية مضر.">الإفراط في المشروبات الغازية</button>
       </div>
-      <p class="feedback" aria-live="polite"></p>
+      <p class="feedback"></p>
     </section>
 
-    <section class="card" data-q="4">
+    <section class="question" data-q="4">
       <div class="q-head">
-        <img src="lungs.svg" alt="رئتان" class="icon">
+        <img src="lungs.svg" alt="رئتان">
         <h2>مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</h2>
       </div>
       <div class="options">
-        <button class="btn good" data-correct="1" data-feedback="✅ صَحِيح؛ الرياضة والتنفس الصحيح يُنشّطان العقل.">مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ</button>
-        <button class="btn bad"  data-correct="0" data-feedback="❌ خَطَأ؛ الجلوس الطويل بلا حركة مُضر.">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
+        <button class="btn correct" data-feedback="✅ صحيح، الرياضة والتنفس الصحيح ينشطان العقل.">ممارسة التمارين والتنفس الصحيح</button>
+        <button class="btn wrong" data-feedback="❌ خطأ، الجلوس الطويل بلا حركة يضر بالصحة.">الجلوس الطويل بلا حركة</button>
       </div>
-      <p class="feedback" aria-live="polite"></p>
+      <p class="feedback"></p>
     </section>
 
-    <section class="card" data-q="5">
+    <section class="question" data-q="5">
       <div class="q-head">
-        <img src="heart.svg" alt="قلب" class="icon">
+        <img src="heart.svg" alt="قلب">
         <h2>مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</h2>
       </div>
       <div class="options">
-        <button class="btn good" data-correct="1" data-feedback="✅ صَحِيح؛ الحفاظ على صحة الجسم والرياضة يقوّيان العقل والقلب.">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
-        <button class="btn bad"  data-correct="0" data-feedback="❌ خَطَأ؛ الإكثار من الأطعمة الضارة يُؤذي القلب والعقل.">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
+        <button class="btn correct" data-feedback="✅ صحيح، الرياضة تحمي القلب وتقوي العقل.">الحفاظ على صحة الجسم والرياضة</button>
+        <button class="btn wrong" data-feedback="❌ خطأ، كثرة الأطعمة الضارة تؤذي القلب والعقل.">الإكثار من الأطعمة الضارة</button>
       </div>
-      <p class="feedback" aria-live="polite"></p>
+      <p class="feedback"></p>
     </section>
 
-    <section class="result">
-      <button class="btn action" id="showScore">إظهار النتيجة</button>
-      <p id="scoreText"></p>
+    <section class="result container" style="text-align:center;">
+      <button class="btn action" id="show-score">إظهار النتيجة</button>
+      <p id="score-text"></p>
     </section>
-
   </main>
 
-  <!-- الفوتر + عدّاد زيارات حقيقي -->
-  <footer class="container footer">
+  <!-- الفوتر مع عداد الزوار -->
+  <footer class="footer">
     <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
-    <div class="counter" aria-live="polite">
-      <span class="label">👥 عدد الزوّار:</span>
-      <span id="visits" class="badge">—</span>
+    <div class="visitor-box">
+      <span>👥 عدد الزوار:</span>
+      <span id="visits-badge">...</span>
     </div>
   </footer>
 
+  <script src="script.js"></script>
   <script>
-    // عناصر الصوت
-    const bg = document.getElementById('bg');
-    const sStart = document.getElementById('s-start');
-    const sGood  = document.getElementById('s-good');
-    const sBad   = document.getElementById('s-bad');
-    const sFan   = document.getElementById('s-fanfare');
-
-    // أزرار عامة
-    const btnPlay = document.getElementById('btnPlay');
-    const btnPause= document.getElementById('btnPause');
-    const btnFs   = document.getElementById('btnFs');
-
-    // تشغيل/إيقاف الخلفية
-    btnPlay.addEventListener('click', async () => {
-      try { await bg.play(); sStart.currentTime = 0; sStart.play().catch(()=>{});} catch(e){}
+    // عداد الزوار
+    document.addEventListener("DOMContentLoaded", function() {
+      const badge = document.getElementById("visits-badge");
+      fetch("https://api.countapi.xyz/hit/al-hawiya.netlify.app/visits")
+        .then(res => res.json())
+        .then(res => { badge.innerText = res.value; })
+        .catch(() => { badge.innerText = "تعذّر الاتصال"; });
     });
-    btnPause.addEventListener('click', () => bg.pause());
-
-    // ملء الشاشة
-    btnFs.addEventListener('click', () => {
-      const el = document.documentElement;
-      if (document.fullscreenElement) document.exitFullscreen();
-      else el.requestFullscreen?.();
-    });
-
-    // أول نقرة على الصفحة تفك كتم الصوت في بعض المتصفحات
-    const onceUnlock = () => {
-      bg.play().then(() => { bg.pause(); }).catch(()=>{});
-      document.removeEventListener('click', onceUnlock);
-    };
-    document.addEventListener('click', onceUnlock, { once:true });
-
-    // منطق الأسئلة
-    let score = 0;
-    document.querySelectorAll('.card').forEach(card => {
-      const fb = card.querySelector('.feedback');
-      card.querySelectorAll('.options .btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const ok = btn.dataset.correct === '1';
-          fb.textContent = btn.dataset.feedback || (ok ? 'صحيح' : 'خطأ');
-          fb.className = 'feedback ' + (ok ? 'ok' : 'no');
-          if (ok){ score++; sGood.currentTime=0; sGood.play().catch(()=>{}); }
-          else   { sBad.currentTime=0;  sBad.play().catch(()=>{}); }
-          // إلغاء تفعيل أزرار هذا السؤال بعد الإجابة
-          card.querySelectorAll('.options .btn').forEach(b => b.disabled = true);
-        });
-      });
-    });
-
-    // إظهار النتيجة
-    const scoreText = document.getElementById('scoreText');
-    document.getElementById('showScore').addEventListener('click', () => {
-      const total = document.querySelectorAll('.card').length;
-      scoreText.textContent = `نتيجتك: ${score} / ${total}`;
-      sFan.currentTime = 0; sFan.play().catch(()=>{});
-      // سكرول لطيف للأسفل
-      scoreText.scrollIntoView({behavior:'smooth', block:'center'});
-    });
-
-    // --- عدّاد زيارات حقيقي (CountAPI) ---
-    // مفتاح مخصص باسم موقعك (namespace/key). لا يحتاج تسجيل.
-    (function visitCounter(){
-      const NS  = 'al-hawiya.netlify.app';
-      const KEY = 'visits';
-      const el  = document.getElementById('visits');
-      fetch(`https://api.countapi.xyz/hit/${encodeURIComponent(NS)}/${encodeURIComponent(KEY)}`)
-        .then(r => r.json())
-        .then(d => { el.textContent = d.value?.toLocaleString('ar') ?? d.value; })
-        .catch(() => { el.textContent = '—'; });
-    })();
   </script>
 </body>
 </html>

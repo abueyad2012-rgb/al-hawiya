@@ -1,208 +1,176 @@
  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>اختبار: كيف ينمو عقلي — الصف الثالث</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --brand1:#69c5ff; --brand2:#b9ecff;
-      --ok:#23a35f; --bad:#d43c3c;
-      --text:#25364a; --muted:#6e7b89;
-      --card:#fff; --bg1:#f7fbff; --bg2:#eef4f8;
-      --ring:rgba(22,119,255,.15);
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f7fafd;
+      margin: 0;
+      padding: 0;
+      color: #222;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      font-family:"Cairo",system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--bg1),var(--bg2));
-      overflow-x:hidden; /* يمنع أي قص أفقي */
+    header {
+      background: linear-gradient(90deg,#4db6ff,#7fd6ff);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
-    header{
-      background:linear-gradient(90deg,var(--brand1),var(--brand2));
-      color:#053b5c;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    header img {
+      height: 50px;
+      vertical-align: middle;
     }
-    .top{
-      max-width:1000px;margin:auto;
-      padding:12px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between;
+    h1 {
+      margin: 10px 0 0;
+      font-size: 22px;
+      font-weight: 700;
     }
-    .brand{display:flex;gap:10px;align-items:center;min-width:0}
-    .brand img{height:40px;width:auto;object-fit:contain}
-    h1{margin:0;font-size:20px;font-weight:800}
-    .sub{font-size:12px;color:#0b3d5a;opacity:.9;margin-top:2px}
-
-    .chips{max-width:1000px;margin:10px auto 0;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:0 14px 10px}
-    .chip{
-      background:#fff;border:none;border-radius:999px;padding:8px 14px;font-weight:800;color:#0b3d5a;
-      box-shadow:0 2px 8px rgba(0,0,0,.06);cursor:pointer;transition:.15s ease
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
     }
-    .chip:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
-
-    .wrap{max-width:1000px;margin:18px auto;padding:0 14px}
-
-    .card{
-      background:var(--card);border-radius:16px;border:1px solid #eef3f7;
-      box-shadow:0 8px 20px rgba(0,0,0,.06);
-      padding:18px;margin:16px 0;
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    .q{margin:0 0 12px;font-size:20px;font-weight:800;color:#0c3e5c}
-
-    .opts{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:1024px){ .opts{grid-template-columns:1fr} }
-
-    .opt{
-      border:none;border-radius:12px;color:#fff;font-weight:800;font-size:18px;padding:14px 12px;
-      box-shadow:0 4px 10px rgba(0,0,0,.07);cursor:pointer;transition:.15s ease
+    .question {
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 18px;
     }
-    @media (max-width:420px){ .opt{font-size:16px;padding:12px} }
-    .opt.ok{background:var(--ok)} .opt.bad{background:var(--bad)}
-    .opt:hover:not(:disabled){transform:translateY(-1px)}
-    .opt:disabled{opacity:.88}
-
-    .center{text-align:center}
-    .btn{
-      background:linear-gradient(90deg,var(--brand1),var(--brand2));
-      color:#08314a;border:none;border-radius:10px;font-weight:800;padding:10px 18px;
-      box-shadow:0 6px 14px var(--ring);cursor:pointer
+    .options {
+      display: grid;
+      gap: 10px;
     }
-    #score{margin-top:10px;font-weight:800}
-
-    footer{padding:18px 12px;text-align:center;color:var(--muted)}
-    .counter{
-      display:inline-flex;align-items:center;gap:10px;background:#0b5c8f;color:#fff;
-      padding:10px 16px;border-radius:999px;box-shadow:0 4px 12px rgba(11,92,143,.25);font-weight:800;margin-top:8px
+    .options button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
     }
-    .dot{width:8px;height:8px;background:#8cf0ff;border-radius:50%;box-shadow:0 0 0 3px rgba(140,240,255,.35)}
+    .options button:hover { opacity: 0.9; }
+    .correct { background: #4caf50; color: #fff; }
+    .wrong { background: #f44336; color: #fff; }
+    .btn-show {
+      display: inline-block;
+      margin: 15px auto;
+      padding: 10px 18px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    #result {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #0a3c5f;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #eef6fb;
+      font-size: 14px;
+      color: #555;
+    }
+    .counter {
+      display: inline-block;
+      margin-top: 10px;
+      background: #1976d2;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <img src="kahnat_logo_transparent.png" alt="شعار">
+    <h1>🧠 اختبار: كيف ينمو عقلي — الصف الثالث</h1>
+    <div>مادة الهوية والمواطنة</div>
+  </header>
 
-<header>
-  <div class="top">
-    <div class="brand">
-      <!-- شعارك الجديد -->
-      <img src="kahnat_logo_transparent.png" alt="شعار المدرسة" />
-      <div>
-        <h1>🧠 اختبار: كيف ينمو عقلي — الصف الثالث</h1>
-        <div class="sub">مادّة الهُويّة والمواطنة</div>
+  <div class="container">
+
+    <div class="card">
+      <div class="question">ما الذي يساعد على نمو العقل؟</div>
+      <div class="options">
+        <button class="wrong">اللعب فقط</button>
+        <button class="correct">القراءة والتعلّم</button>
       </div>
     </div>
-  </div>
 
-  <div class="chips">
-    <button class="chip" id="play">تشغيل الموسيقى</button>
-    <button class="chip" id="pause">إيقاف الموسيقى</button>
-    <button class="chip" id="fs">ملء الشاشة</button>
-  </div>
-</header>
-
-<main class="wrap">
-  <section class="card" data-q="1">
-    <h2 class="q">ما الذي يُساعد على نُموّ العقل؟</h2>
-    <div class="opts">
-      <button class="opt bad">اللعب فقط</button>
-      <button class="opt ok">القراءة والتعلُّم</button>
+    <div class="card">
+      <div class="question">ما الذي يحافظ على نشاط العقل؟</div>
+      <div class="options">
+        <button class="wrong">السهر الطويل</button>
+        <button class="correct">التغذية الصحية</button>
+      </div>
     </div>
-  </section>
 
-  <section class="card" data-q="2">
-    <h2 class="q">ما الذي يُحافظ على نشاط العقل؟</h2>
-    <div class="opts">
-      <button class="opt bad">السَّهر الطويل</button>
-      <button class="opt ok">التغذية الصحيّة</button>
+    <div class="card">
+      <div class="question">ما الذي يساعد على التركيز؟</div>
+      <div class="options">
+        <button class="correct">النوم المبكر</button>
+        <button class="wrong">الانشغال المستمر بالهاتف</button>
+      </div>
     </div>
-  </section>
 
-  <section class="card center">
-    <button class="btn" id="showScore">إظهار النتيجة</button>
-    <div id="score" aria-live="polite"></div>
-  </section>
-</main>
+    <div class="card center">
+      <button class="btn-show" id="showResult">إظهار النتيجة</button>
+      <div id="result"></div>
+    </div>
 
-<footer>
-  <div>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</div>
-  <div class="counter" title="عداد زيارات الصفحة">
-    <span class="dot" aria-hidden="true"></span>
-    عدد الزوّار: <span id="visits">--</span>
   </div>
-</footer>
 
-<!-- الأصوات (تأكد أن أسماء الملفات كما في المستودع) -->
-<audio id="bg" src="bg_music.wav" loop></audio>
-<audio id="ok" src="correct_ting.wav"></audio>
-<audio id="bad" src="start_chime.wav"></audio>
-<audio id="fan" src="result_fanfare.wav"></audio>
+  <footer>
+    © قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)
+    <div class="counter">عدد الزوّار: <span id="visits">--</span></div>
+  </footer>
 
-<script>
-  // === موسيقى وملء الشاشة ===
-  const bg = document.getElementById('bg');
-  document.getElementById('play').onclick = ()=> bg.play();
-  document.getElementById('pause').onclick= ()=> bg.pause();
-  document.getElementById('fs').onclick   = ()=>{
-    if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
-    else document.exitFullscreen();
-  };
+  <script>
+    // عداد الزوار
+    fetch('https://api.countapi.xyz/hit/alhawiya/test')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('visits').textContent = data.value;
+      });
 
-  // === تفاعل الخيارات ===
-  document.querySelectorAll('.opts').forEach(box=>{
-    box.querySelectorAll('button').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        (btn.classList.contains('ok') ? ok : bad).play();
-        box.querySelectorAll('button').forEach(b=>b.disabled=true);
+    // حساب النتيجة
+    document.getElementById('showResult').addEventListener('click', () => {
+      const total = document.querySelectorAll('.card .question').length;
+      let correct = 0;
+      document.querySelectorAll('.card').forEach(card => {
+        if (card.querySelector('.correct:disabled')) correct++;
+      });
+      document.getElementById('result').textContent = "نتيجتك: " + correct + " / " + total;
+    });
+
+    // تعطيل الأزرار بعد الضغط وتشغيل الأصوات
+    const correctSound = new Audio('correct_ting.wav');
+    const wrongSound = new Audio('start_chime.wav');
+
+    document.querySelectorAll('.options button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('correct')) correctSound.play();
+        else wrongSound.play();
+        btn.parentElement.querySelectorAll('button').forEach(b => b.disabled = true);
       });
     });
-  });
-
-  // === حساب النتيجة ===
-  document.getElementById('showScore').addEventListener('click', ()=>{
-    const total = document.querySelectorAll('[data-q]').length;
-    let correct = 0;
-    document.querySelectorAll('[data-q]').forEach(sec=>{
-      if (sec.querySelector('.ok:disabled')) correct++;
-    });
-    document.getElementById('score').textContent = `نتيجتك: ${correct} / ${total}`;
-    fan.play();
-  });
-
-  // === عدّاد الزوار مع مزوّد بديل ونسخة محلية ===
-  (function visitorCounter(){
-    const el = document.getElementById('visits');
-    const NS = 'al-hawiya-site';  // لا تغيّر
-    const KEY = 'home';           // لا تغيّر
-
-    const show = v => el.textContent = Number.isFinite(v) ? v.toLocaleString('ar-EG') : '--';
-    const save = v => { try{ localStorage.setItem('visits-cache', String(v)); }catch(e){} };
-    const load = _ => { try{ return parseInt(localStorage.getItem('visits-cache')||'0',10);}catch(e){return 0;} };
-
-    // نحاول المزود الرئيسي، ثم المرآة، ثم نعرض المخزون المحلي
-    const hit = base => fetch(`${base}/hit/${NS}/${KEY}`).then(r=>r.json());
-    const ensure = base => fetch(`${base}/get/${NS}/${KEY}`)
-        .then(r=> r.ok ? r.json() : fetch(`${base}/create?namespace=${NS}&key=${KEY}&value=0`).then(()=>({value:0})));
-
-    const TRY = async ()=>{
-      try{
-        await ensure('https://api.countapi.xyz');
-        const h = await hit('https://api.countapi.xyz');
-        const v = Number(h.value||0); show(v); save(v); return true;
-      }catch(e){
-        try{
-          await ensure('https://api.countapi.dev');
-          const h2 = await hit('https://api.countapi.dev');
-          const v2 = Number(h2.value||0); show(v2); save(v2); return true;
-        }catch(e2){
-          show(load()); return false;
-        }
-      }
-    };
-    TRY();
-  })();
-</script>
+  </script>
 </body>
 </html>

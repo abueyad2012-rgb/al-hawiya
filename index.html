@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- أصوات -->
+  <!-- الأصوات -->
   <audio id="sfx-start" src="start_chime.wav" preload="auto"></audio>
   <audio id="sfx-correct" src="correct_ting.wav" preload="auto"></audio>
   <audio id="sfx-wrong" src="wrong_buzz.wav" preload="auto"></audio>
   <audio id="sfx-fanfare" src="result_fanfare.wav" preload="auto"></audio>
   <audio id="bg-music" src="bg_music.wav" preload="auto" loop></audio>
 
-  <!-- الهيدر -->
+  <!-- العنوان -->
   <header class="hero container">
     <img src="logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
     <div>
@@ -31,13 +31,14 @@
 
   <!-- الأسئلة -->
   <main class="container">
+
     <section class="question" data-q="1">
       <div class="q-head">
         <img src="book.svg" alt="كتاب" class="icon">
         <h2>مَا الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟</h2>
       </div>
       <div class="options">
-        <button class="btn wrong" data-feedback="❌ خَطَأ، اللَّعِبُ مُمتِعٌ وَلَكِنَّهُ لَا يُغَذِّي العَقْلَ.">اللَّعِبُ مَعَ الأَصْدِقَاءِ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، اللَّعِبُ ممتعٌ ولكنَّه لا يُغذّي العقل.">اللَّعِبُ مَعَ الأَصْدِقَاءِ</button>
         <button class="btn correct" data-feedback="✅ صَحِيحٌ، القِرَاءَةُ وَالتَّعَلُّمُ غِذَاءُ العَقْلِ!">القِرَاءَةُ وَالتَّعَلُّمُ</button>
       </div>
       <p class="feedback"></p>
@@ -50,7 +51,7 @@
       </div>
       <div class="options">
         <button class="btn correct" data-feedback="✅ صَحِيحٌ، التَّغْذِيَةُ الصِّحِّيَّةُ تُعْطِينَا الطَّاقَةَ.">التَّغْذِيَةُ الصِّحِّيَّةُ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، السَّهَرُ الطَّوِيلُ يُتْعِبُ العَقْلَ.">السَّهَرُ الطَّوِيلُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، السَّهَرُ يُتْعِبُ العَقْلَ.">السَّهَرُ الطَّوِيلُ</button>
       </div>
       <p class="feedback"></p>
     </section>
@@ -61,8 +62,8 @@
         <h2>كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، شُرْبُ المَاءِ بِانْتِظَامٍ يُنَشِّطُ الدِّمَاغَ وَالجِسْمَ.">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ مُضِرٌّ.">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، شُرْبُ المَاءِ يُنَشِّطُ الدِّمَاغَ.">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، المشروبات الغازية مُضرّة.">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
       </div>
       <p class="feedback"></p>
     </section>
@@ -73,8 +74,8 @@
         <h2>مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الرِّيَاضَةُ وَالتَّنَفُّسُ الصَّحِيحُ يُنَشِّطَانِ العَقْلَ.">مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ يَضُرُّ بِالصِّحَّةِ.">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الرياضة والتنفس الصحيح يُنشطان العقل.">ممارسة التمارين والتنفس الصحيح</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الجلوس الطويل بلا حركة مُضرّ.">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
       </div>
       <p class="feedback"></p>
     </section>
@@ -85,21 +86,25 @@
         <h2>مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ يَحْمِيانِ القَلْبَ وَيُقَوِّيَانِ العَقْلَ.">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ يُؤْذِي القَلْبَ وَالعَقْلَ.">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الحِفَاظُ على صِحّة الجِسم والرياضة يقويان العقل والقلب.">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الأطعمة الضارة تُؤذي القلب والعقل.">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
       </div>
       <p class="feedback"></p>
     </section>
 
+    <!-- زر النتيجة -->
     <section class="result container">
       <button class="btn action" id="show-score">إظهار النتيجة</button>
       <p id="score-text"></p>
     </section>
   </main>
 
-  <!-- الفوتر -->
+  <!-- التذييل مع عداد الزيارات -->
   <footer class="container footer">
     <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
+    <br>
+    <!-- عداد الزوار -->
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fal-hawiya.netlify.app&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1&edge_flat=false" alt="عدد الزوار">
   </footer>
 
   <script src="script.js"></script>

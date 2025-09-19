@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -7,18 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- المؤثرات -->
+  <!-- أصوات -->
   <audio id="sfx-start" src="start_chime.wav" preload="auto"></audio>
   <audio id="sfx-correct" src="correct_ting.wav" preload="auto"></audio>
   <audio id="sfx-wrong" src="wrong_buzz.wav" preload="auto"></audio>
   <audio id="sfx-fanfare" src="result_fanfare.wav" preload="auto"></audio>
+  <audio id="bg-music" src="bg_music.wav" preload="auto" loop></audio>
 
-  <!-- موسيقى الخلفية (بنسختين mp3 + wav للضمان) -->
-  <audio id="bg-music" preload="auto" loop playsinline muted>
-    <source src="bg_music.mp3" type="audio/mpeg">
-    <source src="bg_music.wav" type="audio/wav">
-  </audio>
-
+  <!-- الهيدر -->
   <header class="hero container">
     <img src="logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
     <div>
@@ -28,11 +24,12 @@
         <button id="btn-play" class="btn small">تشغيل الموسيقى</button>
         <button id="btn-pause" class="btn small mute">إيقاف الموسيقى</button>
         <button id="btn-fs" class="btn small">وضع ملء الشاشة</button>
-        <span class="hint">⟵ ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
+        <span class="hint">⟵ انقر لتفعيل الصوت في المتصفح</span>
       </div>
     </div>
   </header>
 
+  <!-- الأسئلة -->
   <main class="container">
     <section class="question" data-q="1">
       <div class="q-head">
@@ -100,38 +97,11 @@
     </section>
   </main>
 
+  <!-- الفوتر -->
   <footer class="container footer">
     <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
   </footer>
 
-  <!-- سكربتات -->
   <script src="script.js"></script>
-  <script>
-    (function () {
-      const audio = document.getElementById('bg-music');
-      const btnPlay  = document.getElementById('btn-play');
-      const btnPause = document.getElementById('btn-pause');
-
-      async function unmuteAndPlay() {
-        try {
-          audio.muted  = false;
-          audio.volume = 0.8;
-          await audio.play();
-        } catch (e) {
-          // لو فشل بسبب قيود المتصفح، سيُعاد المحاولة بعد لمسة أخرى
-        }
-      }
-
-      // نحاول تشغيله مكتومًا
-      audio.play().catch(() => {});
-
-      // أول تفاعل في أي مكان = نفك الكتم ونشغل
-      ['click','touchstart','keydown'].forEach(ev => {
-        window.addEventListener(ev, function once() {
-          unmuteAndPlay();
-          window.removeEventListener(ev, once, {passive:true});
-        }, {passive:true});
-      });
-
-      if (btnPlay)  btnPlay.addEventListener('click', unmuteAndPlay);
-      if (btnPause) btnPause.addEventListener('click', (
+</body>
+</html>

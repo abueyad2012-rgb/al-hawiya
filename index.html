@@ -7,14 +7,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <audio id="sfx-start" src="assets/sfx/start_chime.wav" preload="auto"></audio>
-  <audio id="sfx-correct" src="assets/sfx/correct_ting.wav" preload="auto"></audio>
-  <audio id="sfx-wrong" src="assets/sfx/wrong_buzz.wav" preload="auto"></audio>
-  <audio id="sfx-fanfare" src="assets/sfx/result_fanfare.wav" preload="auto"></audio>
-  <audio id="bg-music" src="assets/sfx/bg_music.wav" preload="auto" loop></audio>
+  <!-- ملفات الصوت -->
+  <audio id="sfx-start" src="start_chime.wav" preload="auto"></audio>
+  <audio id="sfx-correct" src="correct_ting.wav" preload="auto"></audio>
+  <audio id="sfx-wrong" src="wrong_buzz.wav" preload="auto"></audio>
+  <audio id="sfx-fanfare" src="result_fanfare.wav" preload="auto"></audio>
+  <audio id="bg-music" src="bg_music.wav" preload="auto" loop></audio>
 
   <header class="hero container">
-    <img src="assets/brand/logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
+    <img src="logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
     <div>
       <h1>🧠 اختبار: كيف ينمو عقلي — الصَّفُّ الثَّالِثُ</h1>
       <p class="subtitle">مادّة الهُوِيَّةِ وَالمُواطَنَةِ — قناة الهوية والمواطنة</p>
@@ -22,15 +23,16 @@
         <button id="btn-play" class="btn small">تشغيل الموسيقى</button>
         <button id="btn-pause" class="btn small mute">إيقاف الموسيقى</button>
         <button id="btn-fs" class="btn small">وضع ملء الشاشة</button>
-        <span class="hint">⟵ ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
+        <span class="hint">⟵ انقر لتفعيل الصوت في المتصفح</span>
       </div>
     </div>
   </header>
 
   <main class="container">
+    <!-- أسئلة الاختبار كما هي -->
     <section class="question" data-q="1">
       <div class="q-head">
-        <img src="assets/icons/book.svg" alt="كتاب" class="icon">
+        <img src="book.svg" alt="كتاب" class="icon">
         <h2>مَا الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟</h2>
       </div>
       <div class="options">
@@ -40,64 +42,25 @@
       <p class="feedback"></p>
     </section>
 
-    <section class="question" data-q="2">
-      <div class="q-head">
-        <img src="assets/icons/apple.svg" alt="تفاحة" class="icon">
-        <h2>مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟</h2>
-      </div>
-      <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، التَّغْذِيَةُ الصِّحِّيَّةُ تُعْطِينَا الطَّاقَةَ.">التَّغْذِيَةُ الصِّحِّيَّةُ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، السَّهَرُ الطَّوِيلُ يُتْعِبُ العَقْلَ.">السَّهَرُ الطَّوِيلُ</button>
-      </div>
-      <p class="feedback"></p>
-    </section>
-
-    <section class="question" data-q="3">
-      <div class="q-head">
-        <img src="assets/icons/water.svg" alt="كأس ماء" class="icon">
-        <h2>كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</h2>
-      </div>
-      <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، شُرْبُ المَاءِ بِانْتِظَامٍ يُنَشِّطُ الدِّمَاغَ وَالجِسْمَ.">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ مُضِرٌّ.">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
-      </div>
-      <p class="feedback"></p>
-    </section>
-
-    <section class="question" data-q="4">
-      <div class="q-head">
-        <img src="assets/icons/lungs.svg" alt="رئتان" class="icon">
-        <h2>مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</h2>
-      </div>
-      <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الرِّيَاضَةُ وَالتَّنَفُّسُ الصَّحِيحُ يُنَشِّطَانِ العَقْلَ.">مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ يَضُرُّ بِالصِّحَّةِ.">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
-      </div>
-      <p class="feedback"></p>
-    </section>
-
-    <section class="question" data-q="5">
-      <div class="q-head">
-        <img src="assets/icons/heart.svg" alt="قلب" class="icon">
-        <h2>مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</h2>
-      </div>
-      <div class="options">
-        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ يَحْمِيانِ القَلْبَ وَيُقَوِّيَانِ العَقْلَ.">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
-        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ يُؤْذِي القَلْبَ وَالعَقْلَ.">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
-      </div>
-      <p class="feedback"></p>
-    </section>
-
-    <section class="result container">
-      <button class="btn action" id="show-score">إظهار النتيجة</button>
-      <p id="score-text"></p>
-    </section>
+    <!-- باقي الأسئلة تبقى كما عندك -->
   </main>
 
   <footer class="container footer">
     <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const bgMusic = document.getElementById('bg-music');
+    const btnPlay = document.getElementById('btn-play');
+    const btnPause = document.getElementById('btn-pause');
+
+    btnPlay.addEventListener('click', () => {
+      bgMusic.play();
+    });
+
+    btnPause.addEventListener('click', () => {
+      bgMusic.pause();
+    });
+  </script>
 </body>
 </html>

@@ -2,175 +2,233 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>اختبار: كيف ينمو عقلي — الصف الثالث</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- خط عربي واضح -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: #f7fafd;
-      margin: 0;
-      padding: 0;
-      color: #222;
+    :root{
+      --brand:#0ea5e9;      /* أزرق سماوي لطيف */
+      --brand-2:#06b6d4;    /* تركواز فاتح */
+      --ok:#22c55e;         /* أخضر */
+      --no:#ef4444;         /* أحمر */
+      --ink:#0f172a;        /* نص غامق */
+      --muted:#64748b;      /* نص خافت */
+      --paper:#ffffff;      /* أبيض */
+      --bg:#f6fbff;         /* خلفية رقيقة */
+      --card-shadow: 0 8px 24px rgba(15,23,42,.06);
+      --radius:14px;
     }
-    header {
-      background: linear-gradient(90deg,#4db6ff,#7fd6ff);
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg);
+      font-family:'Cairo',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto;
+      color:var(--ink); line-height:1.65;
     }
-    header img {
-      height: 50px;
-      vertical-align: middle;
+
+    /* رأس جذّاب */
+    header{
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff; padding:18px 12px 28px;
+      box-shadow:var(--card-shadow);
+      position:sticky; top:0; z-index:10;
     }
-    h1 {
-      margin: 10px 0 0;
-      font-size: 22px;
-      font-weight: 700;
+    .head-wrap{
+      max-width:1000px; margin:0 auto; display:flex; align-items:center; gap:14px;
     }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
+    .logo{
+      height:46px; width:auto; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.15));
     }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    .titles h1{margin:0; font-size:22px; font-weight:700}
+    .titles p{margin:6px 0 0; color:#eaf6ff; font-size:14px}
+
+    /* الحاوية الرئيسية */
+    .container{max-width:1000px; margin:22px auto; padding:0 14px 70px}
+
+    /* بطاقة السؤال */
+    .card{
+      background:var(--paper);
+      border-radius:var(--radius);
+      box-shadow:var(--card-shadow);
+      padding:18px; margin-bottom:18px;
     }
-    .question {
-      font-weight: 700;
-      margin-bottom: 15px;
-      font-size: 18px;
+    .q-title{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; font-size:18px;
     }
-    .options {
-      display: grid;
-      gap: 10px;
+    .q-badge{
+      width:34px; height:34px; border-radius:9px;
+      background:#eaf6ff; color:#0369a1;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-weight:700;
     }
-    .options button {
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.2s;
+
+    .options{display:grid; gap:10px; margin-top:12px}
+    .btn{
+      padding:12px 14px; border:none; cursor:pointer; border-radius:10px;
+      font-weight:700; font-size:16px; transition:.15s transform ease, .15s opacity ease;
     }
-    .options button:hover { opacity: 0.9; }
-    .correct { background: #4caf50; color: #fff; }
-    .wrong { background: #f44336; color: #fff; }
-    .btn-show {
-      display: inline-block;
-      margin: 15px auto;
-      padding: 10px 18px;
-      background: #2196f3;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
+    .btn:hover{transform:translateY(-1px); opacity:.95}
+    .btn:disabled{opacity:.65; cursor:default; transform:none}
+
+    .btn.ok{background:var(--ok); color:#fff}
+    .btn.no{background:var(--no); color:#fff}
+
+    /* إظهار النتيجة */
+    .actions{
+      text-align:center; margin-top:8px;
     }
-    #result {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: 700;
-      color: #0a3c5f;
+    .show{
+      background:var(--brand); color:#fff; border:none;
+      padding:12px 20px; border-radius:12px; font-weight:700; cursor:pointer;
+      box-shadow:var(--card-shadow);
     }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #eef6fb;
-      font-size: 14px;
-      color: #555;
+    #result{margin-top:10px; font-weight:700; color:#0a3c5f}
+
+    /* تذييل وعداد زوار */
+    footer{
+      text-align:center; padding:18px 10px; background:#eaf6ff; color:var(--muted);
+      border-top:1px solid #dbeafe;
+      position:sticky; bottom:0; z-index:9;
     }
-    .counter {
-      display: inline-block;
-      margin-top: 10px;
-      background: #1976d2;
-      color: #fff;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-weight: 700;
+    .counter{
+      display:inline-flex; align-items:center; gap:8px;
+      background:#0ea5e9; color:#fff; padding:8px 14px; border-radius:999px;
+      font-weight:700; margin-top:8px; box-shadow:var(--card-shadow)
+    }
+    .dot{width:8px; height:8px; background:#fff; border-radius:999px; opacity:.85}
+
+    /* ضمان عدم القصّ على الشاشات الصغيرة */
+    @media (max-width:540px){
+      .titles h1{font-size:18px}
+      .q-title{font-size:16px}
+      .btn{font-size:15px}
+      header{padding-bottom:22px}
     }
   </style>
 </head>
 <body>
+
+  <!-- رأس مع شعارك الجديد kahnat_logo_transparent.png -->
   <header>
-    <img src="kahnat_logo_transparent.png" alt="شعار">
-    <h1>🧠 اختبار: كيف ينمو عقلي — الصف الثالث</h1>
-    <div>مادة الهوية والمواطنة</div>
+    <div class="head-wrap">
+      <img src="kahnat_logo_transparent.png" alt="شعار مدرسة كهنات" class="logo">
+      <div class="titles">
+        <h1>🧠 اختبار: كيف ينمو عقلي — الصَّفُّ الثَّالِثُ</h1>
+        <p>مادّة الهُوِيَّةِ وَالمُواطَنَةِ</p>
+      </div>
+    </div>
   </header>
 
-  <div class="container">
+  <main class="container" id="quiz">
 
-    <div class="card">
-      <div class="question">ما الذي يساعد على نمو العقل؟</div>
+    <!-- س1 -->
+    <section class="card" data-q="1">
+      <div class="q-title"><span class="q-badge">1</span> ما الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟</div>
       <div class="options">
-        <button class="wrong">اللعب فقط</button>
-        <button class="correct">القراءة والتعلّم</button>
+        <button class="btn no">اللعب فقط</button>
+        <button class="btn ok">القِرَاءَةُ وَالتَّعَلُّمُ</button>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="question">ما الذي يحافظ على نشاط العقل؟</div>
+    <!-- س2 -->
+    <section class="card" data-q="2">
+      <div class="q-title"><span class="q-badge">2</span> مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟</div>
       <div class="options">
-        <button class="wrong">السهر الطويل</button>
-        <button class="correct">التغذية الصحية</button>
+        <button class="btn ok">التَّغْذِيَةُ الصِّحِّيَّةُ</button>
+        <button class="btn no">السَّهَرُ الطَّوِيلُ</button>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="question">ما الذي يساعد على التركيز؟</div>
+    <!-- س3 -->
+    <section class="card" data-q="3">
+      <div class="q-title"><span class="q-badge">3</span> كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</div>
       <div class="options">
-        <button class="correct">النوم المبكر</button>
-        <button class="wrong">الانشغال المستمر بالهاتف</button>
+        <button class="btn ok">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
+        <button class="btn no">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
       </div>
-    </div>
+    </section>
 
-    <div class="card center">
-      <button class="btn-show" id="showResult">إظهار النتيجة</button>
-      <div id="result"></div>
-    </div>
+    <!-- س4 -->
+    <section class="card" data-q="4">
+      <div class="q-title"><span class="q-badge">4</span> مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</div>
+      <div class="options">
+        <button class="btn ok">مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ</button>
+        <button class="btn no">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
+      </div>
+    </section>
 
-  </div>
+    <!-- س5 -->
+    <section class="card" data-q="5">
+      <div class="q-title"><span class="q-badge">5</span> مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</div>
+      <div class="options">
+        <button class="btn ok">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
+        <button class="btn no">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
+      </div>
+    </section>
+
+    <!-- س6 -->
+    <section class="card" data-q="6">
+      <div class="q-title"><span class="q-badge">6</span> مَا الَّذِي يُسَاعِدُ عَلَى التَّرْكِيزِ؟</div>
+      <div class="options">
+        <button class="btn ok">النَّوْمُ المُبَكِّرُ</button>
+        <button class="btn no">الاِنْشِغَالُ المُسْتَمِرُّ بِالهَاتِفِ</button>
+      </div>
+    </section>
+
+    <!-- زر النتيجة -->
+    <section class="card actions">
+      <button id="showScore" class="show">إظهار النتيجة</button>
+      <div id="result" aria-live="polite"></div>
+    </section>
+  </main>
 
   <footer>
     © قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)
-    <div class="counter">عدد الزوّار: <span id="visits">--</span></div>
+    <div class="counter" title="عداد الزوّار (يتزايد تلقائيًا)">
+      <span class="dot"></span> عدد الزوّار: <span id="visits">—</span>
+    </div>
   </footer>
 
   <script>
-    // عداد الزوار
-    fetch('https://api.countapi.xyz/hit/alhawiya/test')
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('visits').textContent = data.value;
+    // الأصوات (اختياري – موجودة في المستودع باسمَي correct_ting.wav و start_chime.wav)
+    const sndOk  = new Audio('correct_ting.wav');
+    const sndNo  = new Audio('start_chime.wav');
+
+    // منع القصّ: لا شيء يُقص هنا لأننا نستخدم max-width + هوامش مناسبة
+
+    // منطق الإجابة: تعطيل خيارات السؤال بعد أول ضغط، مع تشغيل صوت مناسب
+    document.querySelectorAll('.card .options').forEach(opts=>{
+      opts.addEventListener('click', (e)=>{
+        const btn = e.target.closest('button');
+        if(!btn || btn.disabled) return;
+        // عطّل كل أزرار هذا السؤال
+        opts.querySelectorAll('button').forEach(b=>b.disabled = true);
+        // شغّل الصوت
+        if(btn.classList.contains('ok'))  sndOk.play().catch(()=>{});
+        if(btn.classList.contains('no'))  sndNo.play().catch(()=>{});
       });
+    });
 
     // حساب النتيجة
-    document.getElementById('showResult').addEventListener('click', () => {
-      const total = document.querySelectorAll('.card .question').length;
+    document.getElementById('showScore').addEventListener('click', ()=>{
+      const cards = Array.from(document.querySelectorAll('.card[data-q]'));
+      const total = cards.length;
       let correct = 0;
-      document.querySelectorAll('.card').forEach(card => {
-        if (card.querySelector('.correct:disabled')) correct++;
+      cards.forEach(card=>{
+        const okBtn = card.querySelector('.btn.ok');
+        if(okBtn && okBtn.disabled) correct++;
       });
-      document.getElementById('result').textContent = "نتيجتك: " + correct + " / " + total;
+      document.getElementById('result').textContent = `نتيجتك: ${correct} / ${total}`;
     });
 
-    // تعطيل الأزرار بعد الضغط وتشغيل الأصوات
-    const correctSound = new Audio('correct_ting.wav');
-    const wrongSound = new Audio('start_chime.wav');
-
-    document.querySelectorAll('.options button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.classList.contains('correct')) correctSound.play();
-        else wrongSound.play();
-        btn.parentElement.querySelectorAll('button').forEach(b => b.disabled = true);
-      });
-    });
-  </script>
-</body>
-</html>
+    // عدّاد الزوّار (فعّال)
+    // هذا النداء يُنشئ/يزيد العداد تلقائيًا (namespace = موقعك، key = visits)
+    fetch('https://api.countapi.xyz/hit/alhawiya.netlify.app/visits')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('visits').textContent =

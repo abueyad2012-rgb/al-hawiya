@@ -7,12 +7,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ملفات الصوت -->
+  <!-- المؤثرات -->
   <audio id="sfx-start" src="start_chime.wav" preload="auto"></audio>
   <audio id="sfx-correct" src="correct_ting.wav" preload="auto"></audio>
   <audio id="sfx-wrong" src="wrong_buzz.wav" preload="auto"></audio>
   <audio id="sfx-fanfare" src="result_fanfare.wav" preload="auto"></audio>
-  <audio id="bg-music" src="bg_music.wav" preload="auto" loop></audio>
+
+  <!-- موسيقى الخلفية (بنسختين mp3 + wav للضمان) -->
+  <audio id="bg-music" preload="auto" loop playsinline muted>
+    <source src="bg_music.mp3" type="audio/mpeg">
+    <source src="bg_music.wav" type="audio/wav">
+  </audio>
 
   <header class="hero container">
     <img src="logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
@@ -23,13 +28,12 @@
         <button id="btn-play" class="btn small">تشغيل الموسيقى</button>
         <button id="btn-pause" class="btn small mute">إيقاف الموسيقى</button>
         <button id="btn-fs" class="btn small">وضع ملء الشاشة</button>
-        <span class="hint">⟵ انقر لتفعيل الصوت في المتصفح</span>
+        <span class="hint">⟵ ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <!-- أسئلة الاختبار كما هي -->
     <section class="question" data-q="1">
       <div class="q-head">
         <img src="book.svg" alt="كتاب" class="icon">
@@ -42,25 +46,92 @@
       <p class="feedback"></p>
     </section>
 
-    <!-- باقي الأسئلة تبقى كما عندك -->
+    <section class="question" data-q="2">
+      <div class="q-head">
+        <img src="apple.svg" alt="تفاحة" class="icon">
+        <h2>مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، التَّغْذِيَةُ الصِّحِّيَّةُ تُعْطِينَا الطَّاقَةَ.">التَّغْذِيَةُ الصِّحِّيَّةُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، السَّهَرُ الطَّوِيلُ يُتْعِبُ العَقْلَ.">السَّهَرُ الطَّوِيلُ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
+
+    <section class="question" data-q="3">
+      <div class="q-head">
+        <img src="water.svg" alt="كأس ماء" class="icon">
+        <h2>كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، شُرْبُ المَاءِ بِانْتِظَامٍ يُنَشِّطُ الدِّمَاغَ وَالجِسْمَ.">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ مُضِرٌّ.">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
+
+    <section class="question" data-q="4">
+      <div class="q-head">
+        <img src="lungs.svg" alt="رئتان" class="icon">
+        <h2>مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الرِّيَاضَةُ وَالتَّنَفُّسُ الصَّحِيحُ يُنَشِّطَانِ العَقْلَ.">مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ يَضُرُّ بِالصِّحَّةِ.">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
+
+    <section class="question" data-q="5">
+      <div class="q-head">
+        <img src="heart.svg" alt="قلب" class="icon">
+        <h2>مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ يَحْمِيانِ القَلْبَ وَيُقَوِّيَانِ العَقْلَ.">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ يُؤْذِي القَلْبَ وَالعَقْلَ.">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
+
+    <section class="result container">
+      <button class="btn action" id="show-score">إظهار النتيجة</button>
+      <p id="score-text"></p>
+    </section>
   </main>
 
   <footer class="container footer">
     <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
   </footer>
 
+  <!-- سكربتات -->
+  <script src="script.js"></script>
   <script>
-    const bgMusic = document.getElementById('bg-music');
-    const btnPlay = document.getElementById('btn-play');
-    const btnPause = document.getElementById('btn-pause');
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const btnPlay  = document.getElementById('btn-play');
+      const btnPause = document.getElementById('btn-pause');
 
-    btnPlay.addEventListener('click', () => {
-      bgMusic.play();
-    });
+      async function unmuteAndPlay() {
+        try {
+          audio.muted  = false;
+          audio.volume = 0.8;
+          await audio.play();
+        } catch (e) {
+          // لو فشل بسبب قيود المتصفح، سيُعاد المحاولة بعد لمسة أخرى
+        }
+      }
 
-    btnPause.addEventListener('click', () => {
-      bgMusic.pause();
-    });
-  </script>
-</body>
-</html>
+      // نحاول تشغيله مكتومًا
+      audio.play().catch(() => {});
+
+      // أول تفاعل في أي مكان = نفك الكتم ونشغل
+      ['click','touchstart','keydown'].forEach(ev => {
+        window.addEventListener(ev, function once() {
+          unmuteAndPlay();
+          window.removeEventListener(ev, once, {passive:true});
+        }, {passive:true});
+      });
+
+      if (btnPlay)  btnPlay.addEventListener('click', unmuteAndPlay);
+      if (btnPause) btnPause.addEventListener('click', (

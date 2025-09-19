@@ -1,182 +1,341 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>اختبار: كيف ينمو عقلي — الصف الثالث | قناة الهوية والمواطنة</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اختبار: كيف ينمو عقلي — الصف الثالث | الهوية والمواطنة</title>
+
+  <!-- خط عربي لطيف -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: "Cairo", sans-serif;
-      background: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
-      margin: 0;
-      padding: 0;
+    :root{
+      --brand:#0EA5E9;          /* سماوي */
+      --brand-dark:#0284C7;
+      --green:#10B981;          /* أخضر */
+      --red:#E11D48;            /* أحمر توتي */
+      --bg:#EAF6FF;             /* خلفية هادئة */
+      --card:#FFFFFF;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --gold:#F59E0B;
+      --radius:16px;
+      --shadow:0 10px 24px rgba(2,132,199,.12);
     }
-    header.hero {
-      text-align: center;
-      padding: 20px;
-      background: #0077b6;
-      color: #fff;
-      border-radius: 0 0 20px 20px;
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Tajawal",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 90% -10%, #D4F1FF 0%, transparent 60%),
+        radial-gradient(900px 600px at 10% -10%, #dff7ff 0%, transparent 60%),
+        linear-gradient(#f7fbff, var(--bg));
     }
-    header.hero h1 {
-      margin: 10px 0;
+
+    /* شريط العنوان */
+    .hero{
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color:#fff;
+      border-bottom-left-radius:28px;
+      border-bottom-right-radius:28px;
+      padding:28px 16px 36px;
+      box-shadow: var(--shadow);
     }
-    .controls button {
-      margin: 5px;
-      padding: 6px 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
+    .hero .wrap{
+      max-width:1100px;margin:0 auto;display:grid;gap:16px;align-items:center;
+      grid-template-columns: 1fr auto;
     }
-    .btn { cursor: pointer; font-size: 16px; padding: 10px 20px; border: none; border-radius: 8px; }
-    .btn.correct { background: #2e8b57; color: #fff; }
-    .btn.wrong { background: #c1121f; color: #fff; }
-    .btn.action { background: #c1121f; color: #fff; margin-top: 10px; }
-    .question {
-      background: #fff;
-      margin: 20px auto;
-      padding: 15px;
-      border-radius: 12px;
-      max-width: 700px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    .title h1{
+      margin:0 0 6px 0;font-weight:800;letter-spacing:.5px;font-size:clamp(22px,4.2vw,40px);
     }
-    .q-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .title p{margin:0;color:#E6F6FF;font-size:clamp(14px,2.2vw,16px)}
+
+    .controls{
+      display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end
     }
-    .q-head img { width: 28px; }
-    footer.footer {
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      background: #0077b6;
-      color: #fff;
-      border-radius: 20px 20px 0 0;
+    .btn{
+      cursor:pointer;border:none;border-radius:999px;
+      padding:10px 14px;font-weight:700;letter-spacing:.2px;
+      transition:.18s transform ease, .18s opacity ease, .18s background ease;
+      box-shadow:0 6px 14px rgba(0,0,0,.08);font-size:14px
     }
-    .visitor-box {
-      display: inline-flex;
-      align-items: center;
-      background: #fff;
-      color: #0077b6;
-      padding: 5px 15px;
-      margin-top: 8px;
-      border-radius: 20px;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    .btn:active{transform:translateY(1px)}
+    .btn.sky{background:#fff;color:var(--brand-dark)}
+    .btn.sky:hover{background:#F0F9FF}
+    .btn.mute{background:#ffe9ed;color:#b91c1c}
+    .btn.full{background:#0b2e4d;color:#fff}
+    .hint{color:#eaf6ff;font-size:13px;display:block;text-align:end;margin-top:6px;opacity:.9}
+
+    /* الحاوية العامة */
+    .container{max-width:1100px;margin:22px auto;padding:0 16px}
+
+    /* بطاقة السؤال */
+    .card{
+      background:var(--card);border-radius:var(--radius);padding:18px;
+      box-shadow:var(--shadow);margin:14px 0
     }
-    .visitor-box span { margin-right: 8px; }
+    .q-head{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+    .q-icon{
+      width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
+      background:#F0F9FF;border:1px solid #D6ECFF;color:var(--brand-dark);font-size:18px
+    }
+    h2{margin:0;font-size:clamp(18px,3.8vw,22px)}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .choice{
+      border:none;border-radius:12px;font-weight:700;padding:14px 12px;cursor:pointer;
+      transition:.2s transform ease, .2s filter ease; font-size:18px
+    }
+    .choice.good{background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff}
+    .choice.bad{background:linear-gradient(180deg,#f43f5e,#e11d48);color:#fff}
+    .choice:hover{filter:brightness(1.05)}
+    .choice:active{transform:scale(.99)}
+    .feedback{margin:8px 2px 2px;color:var(--muted);font-weight:600;min-height:22px}
+
+    /* النتيجة */
+    .result{display:grid;place-items:center;gap:10px;margin:24px 0}
+    .action{background:linear-gradient(180deg,#dc2626,#b91c1c);color:#fff}
+    .score{font-size:20px;font-weight:800}
+
+    /* الفوتر */
+    footer{
+      margin-top:36px;background:linear-gradient(135deg,#0b66a3, #094d7b);
+      color:#dff4ff;padding:20px 16px;border-top-left-radius:20px;border-top-right-radius:20px
+    }
+    .foot-wrap{max-width:1100px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:8px}
+    .brand img{width:36px;height:36px}
+    .copy{font-size:14px}
+
+    /* عداد الزوار */
+    .counter{
+      background:#fff;border-radius:999px;padding:10px 14px;display:flex;align-items:center;gap:10px;
+      box-shadow:0 10px 24px rgba(0,0,0,.12);color:#0b2e4d;font-weight:800
+    }
+    .bubble{
+      width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:800
+    }
+    .counter small{font-weight:700;color:#0b2e4d}
+
+    /* أصغر الشاشات */
+    @media (max-width:680px){
+      .options{grid-template-columns:1fr}
+      .controls{justify-content:flex-start}
+    }
   </style>
 </head>
 <body>
-  <!-- الأصوات -->
-  <audio id="sfx-start" src="start_chime.wav" preload="auto"></audio>
-  <audio id="sfx-correct" src="correct_ting.wav" preload="auto"></audio>
-  <audio id="sfx-wrong" src="wrong_buzz.wav" preload="auto"></audio>
-  <audio id="sfx-fanfare" src="result_fanfare.wav" preload="auto"></audio>
-  <audio id="bg-music" src="bg_music.wav" preload="auto" loop></audio>
 
-  <!-- الهيدر -->
-  <header class="hero container">
-    <h1>🧠 اختبار: كيف ينمو عقلي — الصَّفُّ الثَّالِثُ</h1>
-    <p class="subtitle">مادّة الهُوِيَّةِ وَالمُواطَنَةِ — قناة الهوية والمواطنة</p>
-    <div class="controls">
-      <button id="btn-play">تشغيل الموسيقى</button>
-      <button id="btn-pause">إيقاف الموسيقى</button>
-      <button id="btn-fs">وضع ملء الشاشة</button>
+  <!-- الأصوات (الأسماء مطابقة لما في المستودع عندك) -->
+  <audio id="sfx-start"    src="start_chime.wav"      preload="auto"></audio>
+  <audio id="sfx-correct"  src="correct_ting.wav"     preload="auto"></audio>
+  <audio id="sfx-wrong"    src="wrong_buzz.wav"       preload="auto"></audio>
+  <audio id="sfx-fanfare"  src="result_fanfare.wav"   preload="auto"></audio>
+  <audio id="bg-music"     src="bg_music.wav"         preload="auto" loop></audio>
+
+  <!-- الهيرو -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="title">
+        <h1>🧠 اختبــار: كَيْفَ يَنمــو عَقلي — <span style="color:#FEF08A">الصَّفُّ الثَّالِثُ</span></h1>
+        <p>مادّة <b>الهُوِيَّة والمُواطَنَة</b> — قناة الهوية والمواطنة</p>
+        <span class="hint">ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
+      </div>
+      <div class="controls">
+        <button id="btn-play" class="btn sky">تشغيل الموسيقى</button>
+        <button id="btn-pause" class="btn mute">إيقاف الموسيقى</button>
+        <button id="btn-fs" class="btn full">وضع ملء الشاشة</button>
+      </div>
     </div>
-    <span class="hint">⟵ ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
   </header>
 
-  <!-- الأسئلة -->
-  <main class="container">
-    <section class="question" data-q="1">
+  <!-- المحتوى -->
+  <main class="container" id="quiz">
+
+    <!-- س1 -->
+    <section class="card" data-q="1">
       <div class="q-head">
-        <img src="book.svg" alt="كتاب">
-        <h2>مَا الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟</h2>
+        <div class="q-icon">📘</div>
+        <h2>ما الَّذي يُسَاعِدُ على نُمُوِّ العَقْلِ؟</h2>
       </div>
       <div class="options">
-        <button class="btn wrong" data-feedback="❌ خطأ، اللعب ممتع ولكن لا يغذي العقل.">اللعب مع الأصدقاء</button>
-        <button class="btn correct" data-feedback="✅ صحيح، القراءة والتعلم غذاء العقل!">القراءة والتعلم</button>
+        <button class="choice bad"  data-fb="❌ اللَّعِبُ ممتع لكنّه لا يُغذّي العقل.">اللعب مع الأصدقاء</button>
+        <button class="choice good" data-fb="✅ صحيح! القراءة والتعلّم غذاء العقل.">القراءة والتعلّم</button>
       </div>
       <p class="feedback"></p>
     </section>
 
-    <section class="question" data-q="2">
+    <!-- س2 -->
+    <section class="card" data-q="2">
       <div class="q-head">
-        <img src="apple.svg" alt="تفاحة">
-        <h2>مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟</h2>
+        <div class="q-icon">🍎</div>
+        <h2>ما الذي يُحافظُ على نشاطِ العَقْل؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صحيح، التغذية الصحية تعطينا الطاقة.">التغذية الصحية</button>
-        <button class="btn wrong" data-feedback="❌ خطأ، السهر الطويل يتعب العقل.">السهر الطويل</button>
+        <button class="choice good" data-fb="✅ صحيح! التغذية الصحية تعطينا طاقة.">التغذية الصحية</button>
+        <button class="choice bad"  data-fb="❌ السهر الطويل يُتعب العقل.">السهر الطويل</button>
       </div>
       <p class="feedback"></p>
     </section>
 
-    <section class="question" data-q="3">
+    <!-- س3 -->
+    <section class="card" data-q="3">
       <div class="q-head">
-        <img src="water.svg" alt="ماء">
-        <h2>كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</h2>
+        <div class="q-icon">💧</div>
+        <h2>كيف نهتمُّ بعقولِنا أكثر؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صحيح، شرب الماء بانتظام ينشط الدماغ والجسم.">شرب الماء بانتظام</button>
-        <button class="btn wrong" data-feedback="❌ خطأ، الإفراط في المشروبات الغازية مضر.">الإفراط في المشروبات الغازية</button>
+        <button class="choice good" data-fb="✅ صحيح! شرب الماء يُنشّط الدماغ والجسم.">شرب الماء بانتظام</button>
+        <button class="choice bad"  data-fb="❌ الإفراط في المشروبات الغازية مُضرّ.">الإفراط في المشروبات الغازية</button>
       </div>
       <p class="feedback"></p>
     </section>
 
-    <section class="question" data-q="4">
+    <!-- س4 -->
+    <section class="card" data-q="4">
       <div class="q-head">
-        <img src="lungs.svg" alt="رئتان">
-        <h2>مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</h2>
+        <div class="q-icon">🫁</div>
+        <h2>ما الذي ينفعُ عقولَنا؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صحيح، الرياضة والتنفس الصحيح ينشطان العقل.">ممارسة التمارين والتنفس الصحيح</button>
-        <button class="btn wrong" data-feedback="❌ خطأ، الجلوس الطويل بلا حركة يضر بالصحة.">الجلوس الطويل بلا حركة</button>
+        <button class="choice good" data-fb="✅ رائع! الرياضة والتنفس الصحيح ينشطان العقل.">ممارسة التمارين والتنفس الصحيح</button>
+        <button class="choice bad"  data-fb="❌ الجلوس الطويل بلا حركة يضرّ بالصحة.">الجلوس الطويل بلا حركة</button>
       </div>
       <p class="feedback"></p>
     </section>
 
-    <section class="question" data-q="5">
+    <!-- س5 -->
+    <section class="card" data-q="5">
       <div class="q-head">
-        <img src="heart.svg" alt="قلب">
-        <h2>مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</h2>
+        <div class="q-icon">❤️</div>
+        <h2>ما الذي يحافظُ على صحةِ العقولِ والقلوب؟</h2>
       </div>
       <div class="options">
-        <button class="btn correct" data-feedback="✅ صحيح، الرياضة تحمي القلب وتقوي العقل.">الحفاظ على صحة الجسم والرياضة</button>
-        <button class="btn wrong" data-feedback="❌ خطأ، كثرة الأطعمة الضارة تؤذي القلب والعقل.">الإكثار من الأطعمة الضارة</button>
+        <button class="choice good" data-fb="✅ أحسنت! صحة الجسم والرياضة تحمي القلب وتقوّي العقل.">الحفاظ على صحة الجسم والرياضة</button>
+        <button class="choice bad"  data-fb="❌ الإكثار من الأطعمة الضارة يُؤذي القلب والعقل.">الإكثار من الأطعمة الضارة</button>
       </div>
       <p class="feedback"></p>
     </section>
 
-    <section class="result container" style="text-align:center;">
+    <section class="result">
       <button class="btn action" id="show-score">إظهار النتيجة</button>
-      <p id="score-text"></p>
+      <div class="score" id="score-text"></div>
     </section>
   </main>
 
-  <!-- الفوتر مع عداد الزوار -->
-  <footer class="footer">
-    <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
-    <div class="visitor-box">
-      <span>👥 عدد الزوار:</span>
-      <span id="visits-badge">...</span>
+  <footer>
+    <div class="foot-wrap">
+      <div class="brand">
+        <img src="logo.svg" alt="شعار" />
+        <span class="copy">© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</span>
+      </div>
+
+      <!-- عدّاد الزوّار الحقيقي (CountAPI) -->
+      <div class="counter" title="يزيد تلقائيًا لكل زيارة">
+        <div class="bubble" id="visitor-bubble">…</div>
+        <small>عدد الزوّار:</small>
+        <span id="visitor-count">…</span>
+      </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
   <script>
-    // عداد الزوار
-    document.addEventListener("DOMContentLoaded", function() {
-      const badge = document.getElementById("visits-badge");
-      fetch("https://api.countapi.xyz/hit/al-hawiya.netlify.app/visits")
-        .then(res => res.json())
-        .then(res => { badge.innerText = res.value; })
-        .catch(() => { badge.innerText = "تعذّر الاتصال"; });
+    /* ========== الصوت والتحكم ========== */
+    const bg = document.getElementById('bg-music');
+    const sStart = document.getElementById('sfx-start');
+    const sGood = document.getElementById('sfx-correct');
+    const sBad  = document.getElementById('sfx-wrong');
+    const sWin  = document.getElementById('sfx-fanfare');
+
+    const btnPlay = document.getElementById('btn-play');
+    const btnPause= document.getElementById('btn-pause');
+    const btnFS   = document.getElementById('btn-fs');
+
+    // تفضيل الكتم محفوظ
+    const mutedPref = localStorage.getItem('bg-muted') === '1';
+    if (mutedPref) bg.muted = true;
+
+    btnPlay.addEventListener('click', () => {
+      bg.muted = false;
+      localStorage.setItem('bg-muted','0');
+      sStart.currentTime = 0; sStart.play().catch(()=>{});
+      bg.play().catch(()=>{});
     });
+    btnPause.addEventListener('click', () => {
+      bg.pause();
+      bg.muted = true;
+      localStorage.setItem('bg-muted','1');
+    });
+    btnFS.addEventListener('click', () => {
+      const el = document.documentElement;
+      if (!document.fullscreenElement) el.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+
+    // أول نقرة على الصفحة تُفعّل الصوت (سياسة المتصفحات)
+    document.addEventListener('click', onceStart, { once:true });
+    function onceStart(){ bg.play().catch(()=>{}); }
+
+    /* ========== منطق الاختبار ========== */
+    let correct = 0;
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      const fb = card.querySelector('.feedback');
+      card.querySelectorAll('.choice').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          // تعطيل الخيارات لهذا السؤال
+          card.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+          const msg = btn.dataset.fb || '';
+          fb.textContent = msg;
+          if (btn.classList.contains('good')) {
+            correct++; sGood.currentTime=0; sGood.play().catch(()=>{});
+            btn.style.filter="brightness(1.05)";
+          } else {
+            sBad.currentTime=0; sBad.play().catch(()=>{});
+          }
+          fb.style.color = btn.classList.contains('good') ? "#059669" : "#b91c1c";
+        });
+      });
+    });
+
+    document.getElementById('show-score').addEventListener('click', ()=>{
+      const total = cards.length;
+      const txt = `نتيجتك: ${correct} / ${total}`;
+      const el = document.getElementById('score-text');
+      el.textContent = txt;
+      sWin.currentTime=0; sWin.play().catch(()=>{});
+      // اهتزاز بسيط للمكافأة على الجوال
+      if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
+    });
+
+    /* ========== عدّاد الزوار الحقيقي (CountAPI) ========== 
+       namespace/key يمكن تعديلهما عند الحاجة.
+       نفس القيمة عبر كل الأجهزة لأن الخدمة تسجّل العدّاد في السحابة.
+    */
+    const COUNT_URL = 'https://api.countapi.xyz/hit/al-hawiya/visits';
+    const countEl   = document.getElementById('visitor-count');
+    const bubbleEl  = document.getElementById('visitor-bubble');
+
+    function setCount(v){
+      countEl.textContent = new Intl.NumberFormat('ar-EG').format(v);
+      bubbleEl.textContent = (v % 100) < 10 ? (v % 10) : (v % 100); // رقم زخرفي صغير
+    }
+
+    fetch(COUNT_URL, { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => { if (data && typeof data.value === 'number') setCount(data.value); else throw 0; })
+      .catch(() => {
+        // بديل: عداد محلي في حال حُجب الإنترنت
+        let v = Number(localStorage.getItem('visits_local')||0)+1;
+        localStorage.setItem('visits_local', v);
+        setCount(v);
+      });
   </script>
 </body>
 </html>

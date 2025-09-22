@@ -2,179 +2,102 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار الهوية والمواطنة</title>
-  <style>
-    body {
-      font-family: "Cairo", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      text-align: center;
-    }
-
-    header {
-      background: #0d47a1;
-      color: white;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    header img.logo {
-      width: 64px;  /* 👈 ضبط حجم الشعار */
-      height: auto;
-      border-radius: 10px;
-    }
-
-    h1 {
-      font-size: 1.4rem;
-      margin: 0;
-    }
-
-    .quiz-container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-
-    .question {
-      margin-bottom: 20px;
-    }
-
-    .question img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-
-    button {
-      margin: 5px;
-      padding: 10px 18px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      opacity: 0.85;
-    }
-
-    .correct {
-      background: #2e7d32;
-      color: white;
-    }
-
-    .wrong {
-      background: #c62828;
-      color: white;
-    }
-
-    .score {
-      margin-top: 15px;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-    .controls {
-      margin: 15px;
-    }
-    .controls button {
-      background: #0d47a1;
-      color: white;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>اختبار: كيف ينمو عقلي — الصف الثالث | قناة الهوية والمواطنة</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <audio id="sfx-start" src="assets/sfx/start_chime.wav" preload="auto"></audio>
+  <audio id="sfx-correct" src="assets/sfx/correct_ting.wav" preload="auto"></audio>
+  <audio id="sfx-wrong" src="assets/sfx/wrong_buzz.wav" preload="auto"></audio>
+  <audio id="sfx-fanfare" src="assets/sfx/result_fanfare.wav" preload="auto"></audio>
+  <audio id="bg-music" src="assets/sfx/bg_music.wav" preload="auto" loop></audio>
 
-  <header>
-    <img src="logo.png" alt="الهوية والمواطنة" class="logo">
-    <h1>اختبار الهوية والمواطنة</h1>
+  <header class="hero container">
+    <img src="assets/brand/logo.svg" class="logo" alt="شعار قناة الهوية والمواطنة">
+    <div>
+      <h1>🧠 اختبار: كيف ينمو عقلي — الصَّفُّ الثَّالِثُ</h1>
+      <p class="subtitle">مادّة الهُوِيَّةِ وَالمُواطَنَةِ — قناة الهوية والمواطنة</p>
+      <div class="controls">
+        <button id="btn-play" class="btn small">تشغيل الموسيقى</button>
+        <button id="btn-pause" class="btn small mute">إيقاف الموسيقى</button>
+        <button id="btn-fs" class="btn small">وضع ملء الشاشة</button>
+        <span class="hint">⟵ ابدأ بالنقر لتفعيل الصوت في المتصفح</span>
+      </div>
+    </div>
   </header>
 
-  <div class="controls">
-    <button onclick="playMusic()">تشغيل الموسيقى</button>
-    <button onclick="pauseMusic()">إيقاف الموسيقى</button>
-  </div>
-
-  <div class="quiz-container">
-    <div class="question">
-      <p>السؤال 1: هل هذا المشهد يمثل لمسة أمنية؟</p>
-      <img src="image1.png" alt="مشهد 1">
-      <div>
-        <button onclick="checkAnswer(true, this)">نعم</button>
-        <button onclick="checkAnswer(false, this)">لا</button>
+  <main class="container">
+    <section class="question" data-q="1">
+      <div class="q-head">
+        <img src="assets/icons/book.svg" alt="كتاب" class="icon">
+        <h2>مَا الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟</h2>
       </div>
-    </div>
-
-    <div class="question">
-      <p>السؤال 2: هل هذا المشهد يمثل تعاونًا أسريًا؟</p>
-      <img src="image2.png" alt="مشهد 2">
-      <div>
-        <button onclick="checkAnswer(true, this)">نعم</button>
-        <button onclick="checkAnswer(false, this)">لا</button>
+      <div class="options">
+        <button class="btn wrong" data-feedback="❌ خَطَأ، اللَّعِبُ مُمتِعٌ وَلَكِنَّهُ لَا يُغَذِّي العَقْلَ.">اللَّعِبُ مَعَ الأَصْدِقَاءِ</button>
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، القِرَاءَةُ وَالتَّعَلُّمُ غِذَاءُ العَقْلِ!">القِرَاءَةُ وَالتَّعَلُّمُ</button>
       </div>
-    </div>
+      <p class="feedback"></p>
+    </section>
 
-    <div class="score" id="score">النتيجة: 0</div>
-  </div>
+    <section class="question" data-q="2">
+      <div class="q-head">
+        <img src="assets/icons/apple.svg" alt="تفاحة" class="icon">
+        <h2>مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، التَّغْذِيَةُ الصِّحِّيَّةُ تُعْطِينَا الطَّاقَةَ.">التَّغْذِيَةُ الصِّحِّيَّةُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، السَّهَرُ الطَّوِيلُ يُتْعِبُ العَقْلَ.">السَّهَرُ الطَّوِيلُ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
 
-  <!-- موسيقى خلفية -->
-  <audio id="bg-music" src="music.mp3" loop></audio>
+    <section class="question" data-q="3">
+      <div class="q-head">
+        <img src="assets/icons/water.svg" alt="كأس ماء" class="icon">
+        <h2>كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، شُرْبُ المَاءِ بِانْتِظَامٍ يُنَشِّطُ الدِّمَاغَ وَالجِسْمَ.">شُرْبُ المَاءِ بِانْتِظَامٍ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ مُضِرٌّ.">الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
 
-  <!-- أصوات الإجابة -->
-  <audio id="ok" src="success.wav" preload="auto"></audio>
-  <audio id="bad" src="error.wav" preload="auto"></audio>
-  <audio id="fin" src="finish.wav" preload="auto"></audio>
+    <section class="question" data-q="4">
+      <div class="q-head">
+        <img src="assets/icons/lungs.svg" alt="رئتان" class="icon">
+        <h2>مَا الَّذِي يَنْفَعُ عُقُولَنَا؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الرِّيَاضَةُ وَالتَّنَفُّسُ الصَّحِيحُ يُنَشِّطَانِ العَقْلَ.">مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ يَضُرُّ بِالصِّحَّةِ.">الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
 
-  <script>
-    let score = 0;
-    let answered = 0;
-    const totalQuestions = document.querySelectorAll(".question").length;
+    <section class="question" data-q="5">
+      <div class="q-head">
+        <img src="assets/icons/heart.svg" alt="قلب" class="icon">
+        <h2>مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟</h2>
+      </div>
+      <div class="options">
+        <button class="btn correct" data-feedback="✅ صَحِيحٌ، الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ يَحْمِيانِ القَلْبَ وَيُقَوِّيَانِ العَقْلَ.">الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ</button>
+        <button class="btn wrong" data-feedback="❌ خَطَأ، الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ يُؤْذِي القَلْبَ وَالعَقْلَ.">الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ</button>
+      </div>
+      <p class="feedback"></p>
+    </section>
 
-    function checkAnswer(correct, btn) {
-      const okSound = document.getElementById("ok");
-      const badSound = document.getElementById("bad");
-      const finSound = document.getElementById("fin");
+    <section class="result container">
+      <button class="btn action" id="show-score">إظهار النتيجة</button>
+      <p id="score-text"></p>
+    </section>
+  </main>
 
-      if (btn.parentNode.classList.contains("answered")) return;
-      btn.parentNode.classList.add("answered");
-      answered++;
+  <footer class="container footer">
+    <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
+  </footer>
 
-      if (correct) {
-        score++;
-        btn.classList.add("correct");
-        okSound.play();
-      } else {
-        btn.classList.add("wrong");
-        badSound.play();
-      }
-
-      document.getElementById("score").innerText = `النتيجة: ${score} / ${totalQuestions}`;
-
-      if (answered === totalQuestions) {
-        setTimeout(() => {
-          finSound.play();
-          alert(`انتهى الاختبار 🎉\nدرجتك: ${score} من ${totalQuestions}`);
-        }, 300);
-      }
-    }
-
-    function playMusic() {
-      document.getElementById("bg-music").play();
-    }
-
-    function pauseMusic() {
-      document.getElementById("bg-music").pause();
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -7,9 +7,9 @@
   <style>
     body {
       font-family: "Cairo", sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
       margin: 0;
       padding: 0;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
       text-align: center;
     }
 
@@ -20,17 +20,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 15px;
     }
 
     header img.logo {
-      width: 72px;   /* حجم الشعار مضبوط */
+      width: 64px;  /* 👈 ضبط حجم الشعار */
       height: auto;
-      margin-left: 12px;
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
     h1 {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       margin: 0;
     }
 
@@ -41,6 +41,11 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
     }
 
     .question img {
@@ -78,6 +83,14 @@
       font-size: 1.2rem;
       font-weight: bold;
     }
+
+    .controls {
+      margin: 15px;
+    }
+    .controls button {
+      background: #0d47a1;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -86,6 +99,11 @@
     <img src="logo.png" alt="الهوية والمواطنة" class="logo">
     <h1>اختبار الهوية والمواطنة</h1>
   </header>
+
+  <div class="controls">
+    <button onclick="playMusic()">تشغيل الموسيقى</button>
+    <button onclick="pauseMusic()">إيقاف الموسيقى</button>
+  </div>
 
   <div class="quiz-container">
     <div class="question">
@@ -106,11 +124,13 @@
       </div>
     </div>
 
-    <!-- أضف بقية الأسئلة بنفس النمط -->
     <div class="score" id="score">النتيجة: 0</div>
   </div>
 
-  <!-- أصوات -->
+  <!-- موسيقى خلفية -->
+  <audio id="bg-music" src="music.mp3" loop></audio>
+
+  <!-- أصوات الإجابة -->
   <audio id="ok" src="success.wav" preload="auto"></audio>
   <audio id="bad" src="error.wav" preload="auto"></audio>
   <audio id="fin" src="finish.wav" preload="auto"></audio>
@@ -125,9 +145,7 @@
       const badSound = document.getElementById("bad");
       const finSound = document.getElementById("fin");
 
-      // لا يمكن الإجابة مرتين على نفس السؤال
       if (btn.parentNode.classList.contains("answered")) return;
-
       btn.parentNode.classList.add("answered");
       answered++;
 
@@ -148,6 +166,14 @@
           alert(`انتهى الاختبار 🎉\nدرجتك: ${score} من ${totalQuestions}`);
         }, 300);
       }
+    }
+
+    function playMusic() {
+      document.getElementById("bg-music").play();
+    }
+
+    function pauseMusic() {
+      document.getElementById("bg-music").pause();
     }
   </script>
 </body>

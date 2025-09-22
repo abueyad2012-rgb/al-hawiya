@@ -1,282 +1,154 @@
  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>اختبار: كيف ينمو عقلي — الصف الثالث</title>
-
-  <!-- اختياري: خط جميل -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبار الهوية والمواطنة</title>
   <style>
-    :root{
-      --accent:#18A0FF;
-      --accent-dark:#0E7AC8;
-      --card:#ffffff;
-      --muted:#f2f6f9;
-      --green:#2f9b4a;
-      --red:#d0423b;
-      --footer:#e9f3f8;
-      --text:#103040;
-      --radius:14px;
-    }
-    html,body{height:100%;margin:0;font-family: 'Cairo', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#f6fbfe 0%, #eef6fb 100%); color:var(--text);}
-
-    header.site-header{
-      background: linear-gradient(90deg,#3ec7ff 0%, #6ee0d9 100%);
-      padding:28px 20px;
-      box-shadow: 0 6px 18px rgba(6,30,50,0.06);
-      border-bottom-left-radius:20px;
-      border-bottom-right-radius:20px;
-      display:flex;
-      align-items:center;
-      gap:16px;
-    }
-    .container{max-width:1100px;margin:0 auto;padding:28px 20px;}
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      width:100%;
-    }
-    .brand img.logo{width:68px;height:68px;object-fit:contain;border-radius:10px;box-shadow:0 6px 16px rgba(12,40,70,0.12);margin-left:8px;}
-    .brand h1{margin:0;font-size:30px;font-weight:800;color:#083c2f;text-align:right;}
-    .brand p.subtitle{margin:2px 0 0 0;color:#063a3a;opacity:0.95;font-weight:500;}
-
-    /* controls */
-    .controls{display:flex;justify-content:center;gap:12px;margin-top:14px;}
-    .controls button{border:0;padding:10px 18px;border-radius:26px;background:var(--card);box-shadow:0 6px 18px rgba(10,20,30,0.08);cursor:pointer;font-weight:700}
-    .controls button.muted{opacity:0.9}
-
-    /* card */
-    .quiz-card{background:var(--card);border-radius:18px;padding:28px;margin:26px 0;box-shadow:0 10px 30px rgba(12,30,50,0.06);}
-    .q-head{display:flex;align-items:center;gap:12px;justify-content:flex-end}
-    .q-head h2{margin:0;font-size:26px;font-weight:800;color:#083b54}
-
-    .options{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
-    .opt-btn{padding:18px;border-radius:12px;border:0;font-weight:800;font-size:18px;cursor:pointer;box-shadow:inset 0 -6px 0 rgba(0,0,0,0.04)}
-    .opt-btn.correct{background:var(--green);color:#fff}
-    .opt-btn.wrong{background:var(--red);color:#fff}
-
-    .result-row{display:flex;justify-content:center;margin-top:18px}
-    #show-score{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;padding:12px 26px;border-radius:14px;border:0;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(10,90,150,0.12)}
-
-    footer.site-footer{margin-top:40px;padding:30px 20px;background:transparent;text-align:center;color:#44606d}
-    .visits{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#1e6b97,#0b4f75);color:#fff;padding:14px 20px;border-radius:999px;font-weight:800;box-shadow:0 10px 20px rgba(10,70,110,0.12)}
-    .vis-count{background:rgba(255,255,255,0.1);padding:8px 12px;border-radius:10px;font-weight:900;}
-
-    /* responsive */
-    @media (max-width:900px){
-      .options{grid-template-columns:1fr;align-items:stretch}
-      .brand h1{font-size:22px}
-      .brand img.logo{width:56px;height:56px}
+    body {
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
 
-    /* small tweaks */
-    .spacer{height:18px}
-    .big-space{height:36px}
-    .btn-outline{background:#fff;border:1px solid rgba(0,0,0,0.06);padding:10px 16px;border-radius:16px}
+    header {
+      background: #0d47a1;
+      color: white;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header img.logo {
+      width: 72px;   /* حجم الشعار مضبوط */
+      height: auto;
+      margin-left: 12px;
+      border-radius: 12px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .question img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .correct {
+      background: #2e7d32;
+      color: white;
+    }
+
+    .wrong {
+      background: #c62828;
+      color: white;
+    }
+
+    .score {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <div style="display:flex;align-items:center;gap:16px;">
-        <!-- الشعار: تأكد وجود kahnat_logo_transparent.png في جذر المستودع -->
-        <img src="kahnat_logo_transparent.png" alt="شعار المدرسة" class="logo" onerror="this.style.display='none'">
-        <div class="brand" style="flex-direction:column;align-items:flex-start">
-          <h1>اختبار: كيف ينمو عقلي — الصف الثالث</h1>
-          <p class="subtitle">مادّة الهُوِيَّةِ وَالمُواطَنَةِ — قناة الهوية والمواطنة</p>
-        </div>
-      </div>
-
-      <!-- زر صغير أيقونات -->
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-        <div style="display:flex;gap:8px;">
-          <button class="btn-outline" id="btn-play">تشغيل الموسيقى</button>
-          <button class="btn-outline mute" id="btn-pause">إيقاف الموسيقى</button>
-          <button class="btn-outline" id="btn-fs">وضع ملء الشاشة</button>
-        </div>
-      </div>
-    </div>
+  <header>
+    <img src="logo.png" alt="الهوية والمواطنة" class="logo">
+    <h1>اختبار الهوية والمواطنة</h1>
   </header>
 
-  <main class="container">
-    <!-- controls -->
-    <div class="controls" aria-hidden="false">
-      <button id="playBtn" class="muted">تشغيل الموسيقى</button>
-      <button id="pauseBtn" class="muted">إيقاف الموسيقى</button>
-      <button id="fullscreenBtn" class="muted">ملء الشاشة</button>
+  <div class="quiz-container">
+    <div class="question">
+      <p>السؤال 1: هل هذا المشهد يمثل لمسة أمنية؟</p>
+      <img src="image1.png" alt="مشهد 1">
+      <div>
+        <button onclick="checkAnswer(true, this)">نعم</button>
+        <button onclick="checkAnswer(false, this)">لا</button>
+      </div>
     </div>
 
-    <!-- Quiz content -->
-    <section id="quiz-area">
-      <!-- injected via JS -->
-    </section>
-
-    <div class="big-space"></div>
-
-  </main>
-
-  <footer class="site-footer">
-    <small>© قناة الهوية والمواطنة — اختبار: كيف ينمو عقلي (الصف الثالث)</small>
-    <div style="height:18px"></div>
-    <div class="visits" aria-live="polite">
-      <span>👥 عدد الزوار:</span>
-      <span class="vis-count" id="visit-count">...</span>
+    <div class="question">
+      <p>السؤال 2: هل هذا المشهد يمثل تعاونًا أسريًا؟</p>
+      <img src="image2.png" alt="مشهد 2">
+      <div>
+        <button onclick="checkAnswer(true, this)">نعم</button>
+        <button onclick="checkAnswer(false, this)">لا</button>
+      </div>
     </div>
-  </footer>
 
-  <!-- أصوات وموسيقى -->
-  <audio id="bg-music" src="assets/sfx/bg_music.wav" loop preload="auto"></audio>
-  <audio id="sfx-correct" src="assets/sfx/correct_ting.wav" preload="auto"></audio>
-  <audio id="sfx-wrong" src="assets/sfx/wrong_buzz.wav" preload="auto"></audio>
+    <!-- أضف بقية الأسئلة بنفس النمط -->
+    <div class="score" id="score">النتيجة: 0</div>
+  </div>
 
-<script>
-/*
-  صفحة الاختبار المتكاملة.
-  - تأكد أن الصورة kahnat_logo_transparent.png موجودة في جذر المشروع.
-  - عداد الزوار يستخدم CountAPI: https://countapi.xyz
-    Namespace: 'al-hawiya-site' , Key: 'how-grows-mind'
-    (لا يتطلب مفتاح)
-*/
+  <!-- أصوات -->
+  <audio id="ok" src="success.wav" preload="auto"></audio>
+  <audio id="bad" src="error.wav" preload="auto"></audio>
+  <audio id="fin" src="finish.wav" preload="auto"></audio>
 
-// ----- بيانات الأسئلة (يمكن تعديل أو إضافة) -----
-const QUESTIONS = [
-  { q: "مَا الَّذِي يُسَاعِدُ عَلَى نُمُوِّ العَقْلِ؟", a:["اللَّعِبُ مَعَ الأَصْدِقَاءِ","القِرَاءَةُ وَالتَّعَلُّمُ"], correct:1 },
-  { q: "مَا الَّذِي يُحَافِظُ عَلَى نَشَاطِ العَقْلِ؟", a:["التَّغْذِيَةُ الصِّحِّيَّةُ","السَّهَرُ الطَّوِيلُ"], correct:0 },
-  { q: "كَيْفَ نَهْتَمُّ بِعُقُولِنَا أَكْثَرَ؟", a:["شُرْبُ المَاءِ بِانْتِظَامٍ","الإِفْرَاطُ فِي المَشْرُوبَاتِ الغَازِيَّةِ"], correct:0 },
-  { q: "مَا الَّذِي يَنْفَعُ عُقُولَنَا؟", a:["مُمارَسَةُ التَّمَارِينِ وَالتَّنَفُّسُ الصَّحِيحُ","الجُلُوسُ الطَّوِيلُ بِلا حَرَكَةٍ"], correct:0 },
-  { q: "مَا الَّذِي يُحَافِظُ عَلَى صِحَّةِ العُقُولِ وَالقُلُوبِ؟", a:["الحِفَاظُ عَلَى صِحَّةِ الجِسْمِ وَالرِّيَاضَةُ","الإِكْثَارُ مِنَ الأَطْعِمَةِ الضَّارَّةِ"], correct:0 },
-  { q: "مَا الَّذِي يُسَاعِدُ عَلَى التَّرْكِيزِ؟", a:["النَّوْمُ المُبَكِّرُ","الانْشِغالُ بالموبايل"], correct:0 }
-];
+  <script>
+    let score = 0;
+    let answered = 0;
+    const totalQuestions = document.querySelectorAll(".question").length;
 
-// ----- رندر الصفحة -----
-const quizArea = document.getElementById('quiz-area');
+    function checkAnswer(correct, btn) {
+      const okSound = document.getElementById("ok");
+      const badSound = document.getElementById("bad");
+      const finSound = document.getElementById("fin");
 
-function renderQuiz(){
-  quizArea.innerHTML = '';
-  QUESTIONS.forEach((item, idx) => {
-    const sec = document.createElement('section');
-    sec.className = 'quiz-card';
-    sec.dataset.q = idx;
-    sec.innerHTML = `
-      <div class="q-head">
-        <h2>${item.q}</h2>
-      </div>
-      <div class="options" role="list">
-        ${item.a.map((opt,i)=>`<button class="opt-btn" data-i="${i}">${opt}</button>`).join('')}
-      </div>
-    `;
-    quizArea.appendChild(sec);
-  });
+      // لا يمكن الإجابة مرتين على نفس السؤال
+      if (btn.parentNode.classList.contains("answered")) return;
 
-  // add result button
-  const resultWrap = document.createElement('div');
-  resultWrap.className = 'quiz-card';
-  resultWrap.style.textAlign = 'center';
-  resultWrap.innerHTML = `<button id="show-score">إظهار النتيجة</button><div style="height:8px"></div><div id="score-text" style="font-weight:800;color:#0f2740"></div>`;
-  quizArea.appendChild(resultWrap);
+      btn.parentNode.classList.add("answered");
+      answered++;
 
-  // add event listeners
-  document.querySelectorAll('.opt-btn').forEach(btn=>{
-    btn.addEventListener('click', onOptionClick);
-  });
-  document.getElementById('show-score').addEventListener('click', showScore);
-}
-
-let answers = {}; // qIndex -> chosenIndex
-
-function onOptionClick(e){
-  const btn = e.currentTarget;
-  const optionIndex = Number(btn.dataset.i);
-  const card = btn.closest('.quiz-card');
-  const qIndex = Number(card.dataset.q);
-
-  // mark answer
-  answers[qIndex] = optionIndex;
-
-  // visually mark selected and disable others for this question
-  card.querySelectorAll('.opt-btn').forEach(b=>{
-    b.disabled = true;
-    b.classList.remove('correct','wrong');
-    if (Number(b.dataset.i) === optionIndex){
-      // mark correct/wrong
-      if (optionIndex === QUESTIONS[qIndex].correct){
-        b.classList.add('correct');
-        playSound('correct');
+      if (correct) {
+        score++;
+        btn.classList.add("correct");
+        okSound.play();
       } else {
-        b.classList.add('wrong');
-        // highlight correct
-        const correctBtn = card.querySelector(`.opt-btn[data-i="${QUESTIONS[qIndex].correct}"]`);
-        if (correctBtn) correctBtn.classList.add('correct');
-        playSound('wrong');
+        btn.classList.add("wrong");
+        badSound.play();
+      }
+
+      document.getElementById("score").innerText = `النتيجة: ${score} / ${totalQuestions}`;
+
+      if (answered === totalQuestions) {
+        setTimeout(() => {
+          finSound.play();
+          alert(`انتهى الاختبار 🎉\nدرجتك: ${score} من ${totalQuestions}`);
+        }, 300);
       }
     }
-  });
-}
-
-// show score
-function showScore(){
-  let correctCount = 0;
-  for (let i=0;i<QUESTIONS.length;i++){
-    if (answers[i] === QUESTIONS[i].correct) correctCount++;
-  }
-  const scoreText = document.getElementById('score-text');
-  scoreText.textContent = ` نتيجتك: ${correctCount} / ${QUESTIONS.length}`;
-}
-
-// ----- sounds -----
-const bg = document.getElementById('bg-music');
-const sfxCorrect = document.getElementById('sfx-correct');
-const sfxWrong = document.getElementById('sfx-wrong');
-
-function playSound(name){
-  try{
-    if (name === 'correct') sfxCorrect.play().catch(()=>{});
-    if (name === 'wrong') sfxWrong.play().catch(()=>{});
-  }catch(e){}
-}
-
-// user controls
-document.getElementById('playBtn').addEventListener('click', ()=>{ bg.play().catch(()=>{}); });
-document.getElementById('pauseBtn').addEventListener('click', ()=>{ bg.pause(); });
-document.getElementById('fullscreenBtn').addEventListener('click', ()=>{
-  const el = document.documentElement;
-  if (!document.fullscreenElement){
-    el.requestFullscreen?.();
-  } else {
-    document.exitFullscreen?.();
-  }
-});
-
-// ----- VISITOR COUNTER via CountAPI -----
-const VISIT_ELEMENT = document.getElementById('visit-count');
-const COUNT_NAMESPACE = 'al-hawiya-site';        // يمكنك تغييره إن رغبت
-const COUNT_KEY = 'how-grows-mind';              // يمكنك تغييره
-
-async function updateVisitorCount(){
-  try{
-    const resp = await fetch(`https://api.countapi.xyz/hit/${COUNT_NAMESPACE}/${COUNT_KEY}`);
-    if (!resp.ok) throw new Error('countapi failed');
-    const data = await resp.json();
-    const value = data.value ?? '—';
-    VISIT_ELEMENT.textContent = value;
-    // حفظ نسخة احتياطية محليًا
-    localStorage.setItem('vis_backup', value);
-  }catch(err){
-    // فشل في CountAPI -> fallback للنسخة المحلية أو صفر
-    const backup = localStorage.getItem('vis_backup') || '—';
-    VISIT_ELEMENT.textContent = backup;
-    console.warn('CountAPI failed, using backup',err);
-  }
-}
-
-// ----- init -----
-renderQuiz();
-updateVisitorCount();
-
-</script>
+  </script>
 </body>
 </html>
